@@ -1190,9 +1190,13 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
     var txt=Lq.join('\n');
     var wa='https://wa.me/16159381935?text='+encodeURIComponent(txt);
     var mailh='mailto:sales@projectconsultingfirm.com?subject='+encodeURIComponent('Solicitud de información · Isla Saboga · '+fullname)+'&body='+encodeURIComponent(txt);
-    form.innerHTML='<div class="ok"><strong>Gracias, '+first+'.</strong> Su solicitud está lista. Envíela por el canal que prefiera y recibirá por escrito la ficha de las parcelas que se ajusten a su perfil (plano, superficie y precio).'+
-      '<span class="okbtns"><a class="btn btn-ink" href="'+wa+'" target="_blank" rel="noopener">Enviar por WhatsApp</a><a class="btn" href="'+mailh+'">Enviar por correo</a></span>'+
-      '<span class="mono">Su resumen se abre en su propio WhatsApp o correo para que usted lo envíe; ningún dato se transmite sin ese paso.</span></div>';
+    var okp=document.createElement('div'); okp.className='ok';
+    okp.innerHTML='<strong>Gracias, '+first+'.</strong> Último paso: pulse uno de estos botones para que su solicitud nos llegue.'+
+      '<span class="okbtns"><a class="btn btn-ink" href="'+wa+'" target="_blank" rel="noopener">Enviar por WhatsApp</a><a class="btn" href="'+mailh+'">Enviar por correo</a><button type="button" class="btn-ghost" id="okBack">Volver y corregir</button></span>'+
+      '<span class="mono">WhatsApp se abre con el resumen listo para enviar; el correo se abre en su aplicación de correo. Si ninguno funciona en su equipo, escríbanos a sales@projectconsultingfirm.com o al +1 615 938-1935.</span>';
+    form.parentNode.insertBefore(okp, form); form.hidden=true;
+    okp.querySelector('#okBack').addEventListener('click', function(){ okp.remove(); form.hidden=false; });
+    if(okp.scrollIntoView){ okp.scrollIntoView({behavior:'smooth', block:'center'}); }
   });
   document.querySelectorAll('[data-copy]').forEach(function(copyBtn){
     var el=document.getElementById(copyBtn.getAttribute('data-copy'));

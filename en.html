@@ -1190,9 +1190,13 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
     var txt=Lq.join('\n');
     var wa='https://wa.me/16159381935?text='+encodeURIComponent(txt);
     var mailh='mailto:sales@projectconsultingfirm.com?subject='+encodeURIComponent('Information request · Isla Saboga · '+fullname)+'&body='+encodeURIComponent(txt);
-    form.innerHTML='<div class="ok"><strong>Thank you, '+first+'.</strong> Your request is ready. Send it through the channel you prefer and you will receive, in writing, the fact sheets of the parcels that fit your profile (survey plan, area and price).'+
-      '<span class="okbtns"><a class="btn btn-ink" href="'+wa+'" target="_blank" rel="noopener">Send via WhatsApp</a><a class="btn" href="'+mailh+'">Send by email</a></span>'+
-      '<span class="mono">Your summary opens in your own WhatsApp or email for you to send; no data is transmitted without that step.</span></div>';
+    var okp=document.createElement('div'); okp.className='ok';
+    okp.innerHTML='<strong>Thank you, '+first+'.</strong> One last step: press one of these buttons so your request reaches us.'+
+      '<span class="okbtns"><a class="btn btn-ink" href="'+wa+'" target="_blank" rel="noopener">Send via WhatsApp</a><a class="btn" href="'+mailh+'">Send by email</a><button type="button" class="btn-ghost" id="okBack">Go back and edit</button></span>'+
+      '<span class="mono">WhatsApp opens with your summary ready to send; the email opens in your mail app. If neither works on your device, write to sales@projectconsultingfirm.com or +1 615 938-1935.</span>';
+    form.parentNode.insertBefore(okp, form); form.hidden=true;
+    okp.querySelector('#okBack').addEventListener('click', function(){ okp.remove(); form.hidden=false; });
+    if(okp.scrollIntoView){ okp.scrollIntoView({behavior:'smooth', block:'center'}); }
   });
   document.querySelectorAll('[data-copy]').forEach(function(copyBtn){
     var el=document.getElementById(copyBtn.getAttribute('data-copy'));
