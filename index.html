@@ -834,31 +834,31 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
       <p class="lead">Complete los campos que apliquen; cada menú despliega sus opciones. Con su perfil le enviamos la ficha técnica de las parcelas que se ajusten (plano, superficie y precio) y, si lo desea, coordinamos una visita privada.</p>
     </div>
     <div class="contact">
-      <form id="leadForm" novalidate><input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <div class="field"><label for="f-nombre">Nombre completo *</label><input id="f-nombre" name="nombre" autocomplete="name" required></div>
+      <form id="leadForm" novalidate action="https://formsubmit.co/sales@projectconsultingfirm.com" method="POST"><input type="hidden" name="_subject" id="f-subject" value="Nueva solicitud · Isla Saboga"><input type="hidden" name="_autoresponse" id="f-autoresp" value=""><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" id="f-next" value="https://pcl2023.github.io/isla-saboga/gracias.html"><input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div class="field"><label for="f-nombre">Nombre completo *</label><input id="f-nombre" name="Nombre completo" autocomplete="name" required></div>
         <div class="field"><label for="f-email">Correo electrónico *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><span class="lbl" id="l-tel">Teléfono móvil o WhatsApp *</span>
-          <div class="phone"><div class="cpick dial" id="pkDial" data-label="l-tel"></div><input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Número sin prefijo" aria-labelledby="l-tel" required></div>
-          <input type="hidden" id="f-telcode" name="telcode"></div>
+          <div class="phone"><div class="cpick dial" id="pkDial" data-label="l-tel"></div><input id="f-tel" name="Teléfono / WhatsApp" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Número sin prefijo" aria-labelledby="l-tel" required></div>
+          <input type="hidden" id="f-telcode" name="Código de país"></div>
         <div class="field"><span class="lbl" id="l-pais">País de residencia *</span>
           <div class="cpick" id="pkPais" data-label="l-pais"></div>
-          <input type="hidden" id="f-pais" name="pais" required></div>
+          <input type="hidden" id="f-pais" name="País de residencia" required></div>
         <div class="field"><label for="f-uso">Destino del proyecto</label>
-          <select id="f-uso" name="uso"><option value="residencia">Residencia principal o vacacional</option><option value="retiro">Residencia para el retiro</option><option value="hospedaje">Hospedaje boutique (posada u hotel)</option><option value="reserva">Reserva patrimonial de tierra</option><option value="evaluacion" selected>En evaluación</option></select></div>
-        <div class="field"><label for="f-parcela">Parcela de interés</label><select id="f-parcela" name="parcela"><option value="">Sin preferencia definida</option></select><button class="seelot" type="button" id="seeLot" hidden>Ubicar en el mapa</button></div>
+          <select id="f-uso" name="Destino del proyecto"><option>Residencia principal o vacacional</option><option>Residencia para el retiro</option><option>Hospedaje boutique (posada u hotel)</option><option>Reserva patrimonial de tierra</option><option selected>En evaluación</option></select></div>
+        <div class="field"><label for="f-parcela">Parcela de interés</label><select id="f-parcela" name="Parcela de interés"><option value="">Sin preferencia definida</option></select><button class="seelot" type="button" id="seeLot" hidden>Ubicar en el mapa</button></div>
         <div class="field"><label for="f-sup">Superficie requerida</label>
-          <select id="f-sup" name="sup"><option>Menos de 2,000 m²</option><option>Entre 2,000 y 10,000 m²</option><option>Entre 1 y 5 hectáreas</option><option>Más de 5 hectáreas</option><option selected>Por determinar</option></select></div>
+          <select id="f-sup" name="Superficie requerida"><option>Menos de 2,000 m²</option><option>Entre 2,000 y 10,000 m²</option><option>Entre 1 y 5 hectáreas</option><option>Más de 5 hectáreas</option><option selected>Por determinar</option></select></div>
         <div class="field"><label for="f-plazo">Plazo estimado de adquisición</label>
-          <select id="f-plazo" name="plazo"><option>Dentro de los próximos 6 meses</option><option>Entre 6 y 12 meses</option><option>En más de 12 meses</option><option selected>Por determinar</option></select></div>
+          <select id="f-plazo" name="Plazo estimado de adquisición"><option>Dentro de los próximos 6 meses</option><option>Entre 6 y 12 meses</option><option>En más de 12 meses</option><option selected>Por determinar</option></select></div>
         <div class="field"><label for="f-pres">Presupuesto de adquisición</label>
-          <select id="f-pres" name="pres"><option>Hasta USD 250,000</option><option>De USD 250,000 a USD 1,000,000</option><option>De USD 1,000,000 a USD 5,000,000</option><option>Más de USD 5,000,000</option><option selected>A tratar con el asesor</option></select></div>
+          <select id="f-pres" name="Presupuesto de adquisición"><option>Hasta USD 250,000</option><option>De USD 250,000 a USD 1,000,000</option><option>De USD 1,000,000 a USD 5,000,000</option><option>Más de USD 5,000,000</option><option selected>A tratar con el asesor</option></select></div>
         <div class="field"><label for="f-origen">¿Cómo conoció el proyecto?</label>
-          <select id="f-origen" name="origen"><option value="" selected>Seleccione una opción</option><option>Recomendación personal</option><option>Búsqueda en internet</option><option>Redes sociales</option><option>Portal inmobiliario</option><option>Corredor de bienes raíces</option><option>Evento o feria</option><option>Otro medio</option></select></div>
+          <select id="f-origen" name="Cómo conoció el proyecto"><option value="" selected>Seleccione una opción</option><option>Recomendación personal</option><option>Búsqueda en internet</option><option>Redes sociales</option><option>Portal inmobiliario</option><option>Corredor de bienes raíces</option><option>Evento o feria</option><option>Otro medio</option></select></div>
         <div class="field span2"><span class="lbl" id="l-agente">¿Actúa como corredor en nombre de un comprador?</span>
-          <div class="radios" role="radiogroup" aria-labelledby="l-agente"><label for="f-ag-no"><input id="f-ag-no" type="radio" name="agente" value="no" checked> No</label><label for="f-ag-si"><input id="f-ag-si" type="radio" name="agente" value="si"> Sí, represento a un comprador</label></div></div>
-        <div class="field full"><label for="f-msg">¿Desea añadir algo?</label><textarea id="f-msg" name="msg" rows="2" placeholder="Escriba aquí cualquier comentario: tipo de proyecto, fechas de visita o requerimientos particulares"></textarea></div>
-        <label class="check full" for="f-visita"><input id="f-visita" name="visita" type="checkbox"> Deseo coordinar una visita privada a la isla</label>
-        <label class="check full" for="f-ok"><input id="f-ok" name="ok" type="checkbox" required> Autorizo el tratamiento de mis datos para gestionar esta solicitud (Ley 81 de 2019, Panamá). *</label>
+          <div class="radios" role="radiogroup" aria-labelledby="l-agente"><label for="f-ag-no"><input id="f-ag-no" type="radio" name="Corredor en nombre de un comprador" value="No" checked> No</label><label for="f-ag-si"><input id="f-ag-si" type="radio" name="Corredor en nombre de un comprador" value="Sí, representa a un comprador"> Sí, represento a un comprador</label></div></div>
+        <div class="field full"><label for="f-msg">¿Desea añadir algo?</label><textarea id="f-msg" name="Comentario" rows="2" placeholder="Escriba aquí cualquier comentario: tipo de proyecto, fechas de visita o requerimientos particulares"></textarea></div>
+        <label class="check full" for="f-visita"><input id="f-visita" name="Visita privada a la isla" type="checkbox" value="Sí, desea coordinarla"> Deseo coordinar una visita privada a la isla</label>
+        <label class="check full" for="f-ok"><input id="f-ok" name="Autorización de datos (Ley 81/2019)" type="checkbox" required value="Sí, autorizado"> Autorizo el tratamiento de mis datos para gestionar esta solicitud (Ley 81 de 2019, Panamá). *</label>
         <div class="submit full"><button class="btn btn-ink" type="submit">Enviar solicitud</button><span class="mono" style="color:var(--ink-2)">* Campos obligatorios</span><span class="err" id="formErr" hidden></span></div>
       </form>
     </div>
@@ -1184,53 +1184,46 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   /* Formulario */
   var form=document.getElementById('leadForm'), err=document.getElementById('formErr');
   form.addEventListener('submit', function(e){
-    e.preventDefault();
     var missing=Array.prototype.filter.call(form.querySelectorAll('[required]'), function(i){ return i.type==='checkbox' ? !i.checked : !i.value.trim(); });
     var mail=document.getElementById('f-email');
-    if(missing.length){ err.textContent='Complete los campos obligatorios y autorice el tratamiento de datos para continuar.'; err.hidden=false; if(missing[0]===paisIn){ pkPais.btn.focus(); } else { missing[0].focus(); } return; }
+    if(missing.length){ e.preventDefault(); err.textContent='Complete los campos obligatorios y autorice el tratamiento de datos para continuar.'; err.hidden=false; if(missing[0]===paisIn){ pkPais.btn.focus(); } else { missing[0].focus(); } return; }
     var digits=document.getElementById('f-tel').value.replace(/\D/g,'');
-    if(digits.length<6||digits.length>15){ err.textContent='Verifique el teléfono: indíquelo sin el prefijo del país, entre 6 y 15 dígitos.'; err.hidden=false; document.getElementById('f-tel').focus(); return; }
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value)){ err.textContent='Verifique el correo electrónico: el formato no es válido.'; err.hidden=false; mail.focus(); return; }
+    if(digits.length<6||digits.length>15){ e.preventDefault(); err.textContent='Verifique el teléfono: indíquelo sin el prefijo del país, entre 6 y 15 dígitos.'; err.hidden=false; document.getElementById('f-tel').focus(); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value)){ e.preventDefault(); err.textContent='Verifique el correo electrónico: el formato no es válido.'; err.hidden=false; mail.focus(); return; }
     err.hidden=true;
     var SV=function(id){var e=document.getElementById(id);return e?e.value.trim():'';};
     var ST=function(id){var e=document.getElementById(id);return (e&&e.selectedIndex>=0)?e.options[e.selectedIndex].text:'';};
     var fullname=document.getElementById('f-nombre').value.trim().replace(/[<>&"]/g,'');
     var first=fullname.split(' ')[0];
     var tel=((SV('f-telcode')||'')+' '+SV('f-tel')).trim();
-    var Lq=['Solicitud de información · Isla Saboga','Nombre: '+fullname,'Correo: '+SV('f-email'),'Teléfono / WhatsApp: '+tel,'País de residencia: '+SV('f-pais'),'Destino del proyecto: '+ST('f-uso')];
-    if(SV('f-parcela')){ Lq.push('Parcela de interés: '+ST('f-parcela')); }
-    Lq.push('Superficie requerida: '+ST('f-sup'));
-    Lq.push('Plazo estimado: '+ST('f-plazo'));
-    Lq.push('Presupuesto: '+ST('f-pres'));
-    if(SV('f-origen')){ Lq.push('Conoció el proyecto por: '+ST('f-origen')); }
-    Lq.push('Corredor en nombre de un comprador: '+(document.getElementById('f-ag-si').checked?'Sí':'No'));
-    Lq.push('Visita privada a la isla: '+(document.getElementById('f-visita').checked?'Desea coordinarla':'Por ahora no'));
-    if(SV('f-msg')){ Lq.push('Comentario: '+SV('f-msg').replace(/[<>&"]/g,'')); }
-    var txt=Lq.join('\n');
+    var waL=['Solicitud de información · Isla Saboga','Nombre: '+fullname,'Correo: '+SV('f-email'),'Teléfono / WhatsApp: '+tel,'País de residencia: '+SV('f-pais'),'Destino del proyecto: '+ST('f-uso')];
+    if(SV('f-parcela')){ waL.push('Parcela de interés: '+ST('f-parcela')); }
+    waL.push('Superficie requerida: '+ST('f-sup'));
+    waL.push('Plazo estimado: '+ST('f-plazo'));
+    waL.push('Presupuesto: '+ST('f-pres'));
+    if(SV('f-origen')){ waL.push('Conoció el proyecto por: '+ST('f-origen')); }
+    waL.push('Corredor en nombre de un comprador: '+(document.getElementById('f-ag-si').checked?'Sí':'No'));
+    waL.push('Visita privada a la isla: '+(document.getElementById('f-visita').checked?'Desea coordinarla':'Por ahora no'));
+    if(SV('f-msg')){ waL.push('Comentario: '+SV('f-msg').replace(/[<>&"]/g,'')); }
+    var txt=waL.join('\n');
     var wa='https://wa.me/16159381935?text='+encodeURIComponent(txt);
-    var mailh='mailto:sales@projectconsultingfirm.com?subject='+encodeURIComponent('Solicitud de información · Isla Saboga · '+fullname)+'&body='+encodeURIComponent(txt);
-    var lines=txt.split('\n'), payload={_subject:'Nueva solicitud · Isla Saboga · '+fullname, _template:'table', _captcha:'false', _replyto:SV('f-email')};
-    lines.slice(1).forEach(function(l){ var i=l.indexOf(': '); if(i>0){ payload[l.slice(0,i)]=l.slice(i+2); } });
     var hp=form.querySelector('[name=_honey]'); var esc=function(s){ return String(s).replace(/[<>&"]/g,''); };
     var sbtn=form.querySelector('button[type=submit]'), slabel=sbtn.innerHTML;
-    function done(){
+    if(hp && hp.value){
+      e.preventDefault();
       var box=document.createElement('div'); box.className='sent'; box.setAttribute('role','status'); box.tabIndex=-1;
       box.innerHTML='<div class="seal"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>'+
         '<h3>Solicitud recibida</h3>'+
-        '<p>'+'Gracias, {first}. Su perfil ya está en manos de nuestro equipo. Le escribiremos personalmente a <b>{email}</b>, en un plazo de 24 horas hábiles, con la ficha técnica de las parcelas que se ajusten a su búsqueda.'.replace('{first}',esc(first)).replace('{email}',esc(SV('f-email')))+'</p>'+
-        '<ol><li><span>01 · Revisión</span>Revisamos su perfil y seleccionamos las parcelas que encajan.</li><li><span>02 · Por correo</span>Recibe plano, superficie, precio y condiciones de cada una.</li><li><span>03 · Si lo desea</span>Coordinamos una visita privada a la isla.</li></ol>'+
+        '<p>'+'Gracias, {first}. Su perfil ya está en manos de nuestro equipo.'.replace('{first}',esc(first))+'</p>'+
         '<div class="acts"><a class="btn btn-ink" href="'+wa+'" target="_blank" rel="noopener">Adelantar la conversación por WhatsApp</a><button type="button" class="again">Enviar otra solicitud</button></div>';
       form.parentNode.insertBefore(box, form); form.hidden=true;
-      box.querySelector('.again').addEventListener('click', function(){ box.remove(); form.reset(); form.hidden=false; sbtn.disabled=false; sbtn.innerHTML=slabel; });
-      if(box.scrollIntoView){ box.scrollIntoView({behavior:'smooth', block:'center'}); } box.focus({preventScroll:true});
+      box.querySelector('.again').addEventListener('click', function(){ box.remove(); form.reset(); form.hidden=false; });
+      return;
     }
-    if(hp && hp.value){ done(); return; }
+    document.getElementById('f-subject').value='Nueva solicitud · Isla Saboga · '+fullname;
+    document.getElementById('f-autoresp').value='Hola '+first+',\n\nGracias por su interés en Isla Saboga. Recibimos su solicitud; nuestro equipo le escribirá personalmente dentro de las próximas 24 horas hábiles con la ficha técnica de las parcelas que se ajusten a su búsqueda.\n\nSi lo prefiere, puede escribirnos directo por WhatsApp al +1 615 938 1935.\n\nMJ Davis\nProject Consulting LLC · Isla Saboga';
+    document.getElementById('f-next').value='https://pcl2023.github.io/isla-saboga/gracias.html?n='+encodeURIComponent(first)+'&e='+encodeURIComponent(SV('f-email'))+'&wa='+encodeURIComponent(wa);
     sbtn.disabled=true; sbtn.innerHTML='<span class="spin" aria-hidden="true"></span> Enviando';
-    fetch('https://formsubmit.co/ajax/sales@projectconsultingfirm.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
-      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok, j:j}; }); })
-      .then(function(res){ var s=String(res.j.success); var msg=String(res.j.message||'');
-        if(res.ok && (s==='true' || /activat/i.test(msg))){ done(); } else { throw new Error(msg||'send'); } })
-      .catch(function(){ sbtn.disabled=false; sbtn.innerHTML=slabel; err.innerHTML='No pudimos enviar su solicitud por un problema de conexión. Sus datos siguen en el formulario: inténtelo de nuevo o escríbanos directamente por <a href="{wa}" target="_blank" rel="noopener">WhatsApp</a> o a <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>.'.replace('{wa}',wa); err.hidden=false; });
   });
   document.querySelectorAll('[data-copy]').forEach(function(copyBtn){
     var el=document.getElementById(copyBtn.getAttribute('data-copy'));
