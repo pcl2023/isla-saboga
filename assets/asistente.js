@@ -7,7 +7,11 @@
   var WORKER = (tag && tag.getAttribute('data-worker')) || '';
   if(!WORKER){ return; }
 
-  var EN = /^en/i.test(document.documentElement.lang || 'es');
+  // Inglés si la página es la inglesa o si el navegador no tiene el español entre sus idiomas
+  // (un visitante alemán o francés en la página en español recibe el saludo en inglés).
+  var LANGS = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'es'];
+  var HAS_ES = false; for (var li = 0; li < LANGS.length; li++) { if (/^es\b/i.test(LANGS[li] || '')) { HAS_ES = true; break; } }
+  var EN = /^en/i.test(document.documentElement.lang || 'es') || !HAS_ES;
   var T = EN ? {
     btn:'Ask our assistant', btnShort:'Chat', title:'Isla Saboga', sub:'Project assistant',
     hello:'Good day. I can answer your questions about the island, the titled parcels, the acquisition process and the turnkey development service. How may I help you?',
