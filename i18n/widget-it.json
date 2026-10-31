@@ -1,0 +1,20 @@
+{
+ "btn": "Chieda al nostro assistente",
+ "btnShort": "Chat",
+ "sub": "Assistente del progetto",
+ "hello": "Buongiorno. Posso rispondere alle Sue domande sull’isola, sui lotti con titolo di proprietà, sulla procedura di acquisto e sul servizio di sviluppo chiavi in mano. Come posso aiutarLa?",
+ "chip1": "I lotti hanno titolo di proprietà?",
+ "chip2": "Come si arriva all’isola?",
+ "chip3": "Vorrei programmare una visita",
+ "tip": "Domande sull’isola? Può porle qui.",
+ "ph": "Scriva la Sua domanda…",
+ "send": "Invia",
+ "note": "Risposte generate dall’IA. Prezzi, disponibilità e condizioni vincolanti vengono confermati per iscritto dal nostro team.",
+ "err": "L’assistente non è disponibile al momento. Può scriverci su <a href=\"https://wa.me/16159381935\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> o all’indirizzo <a href=\"mailto:sales@projectconsultingfirm.com\">sales@projectconsultingfirm.com</a>.",
+ "close": "Chiudi",
+ "closeTip": "Ignora",
+ "offerMsg": "Questo sito è disponibile anche in italiano.",
+ "offerGo": "Vedi in italiano",
+ "langLabel": "Lingua",
+ "langName": "Italiano"
+}

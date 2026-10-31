@@ -1,0 +1,20 @@
+{
+ "btn": "咨询我们的助手",
+ "btnShort": "对话",
+ "sub": "项目助手",
+ "hello": "您好。我可以回答您关于本岛、产权登记地块、购置流程以及交钥匙开发服务的问题。请问有什么可以帮您？",
+ "chip1": "地块有产权登记吗？",
+ "chip2": "如何前往岛上？",
+ "chip3": "我想预约参观",
+ "tip": "对岛屿有疑问？在这里提问。",
+ "ph": "请输入您的问题…",
+ "send": "发送",
+ "note": "回答由人工智能生成。价格、供应情况和具有约束力的条款由我们的团队以书面形式确认。",
+ "err": "助手暂时不可用。您可以通过<a href=\"https://wa.me/16159381935\" target=\"_blank\" rel=\"noopener\">WhatsApp</a>或邮件<a href=\"mailto:sales@projectconsultingfirm.com\">sales@projectconsultingfirm.com</a>与我们联系。",
+ "close": "关闭",
+ "closeTip": "关闭提示",
+ "offerMsg": "本网站另有中文版。",
+ "offerGo": "查看中文版",
+ "langLabel": "语言",
+ "langName": "中文"
+}

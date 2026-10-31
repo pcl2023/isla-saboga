@@ -1,23 +1,53 @@
-/* Sugerencia de idioma. Un solo archivo para index.html y en.html.
-   En la página en español: si el navegador no tiene el español entre sus idiomas, ofrece la versión en inglés.
-   En la página en inglés: si el idioma principal del navegador es español, ofrece la versión en español.
-   No redirige: solo muestra un aviso discreto que se puede cerrar. La elección se recuerda en este navegador. */
+/* Idiomas de Isla Saboga. Un solo archivo para las siete páginas (es, en, it, fr, de, zh, ar).
+   1. Selector de idioma de la cabecera: navega a la página elegida y conserva el ancla; en pantallas estrechas muestra el código corto.
+   2. Aviso discreto: si el idioma principal del navegador es uno de los siete y no coincide con el de la página, ofrece esa versión.
+      No redirige. La elección se recuerda en este navegador. */
 (function(){
   'use strict';
   var KEY = 'sbga-lang-choice';
-  var pageEn = /^en/i.test(document.documentElement.lang || 'es');
+  var PAGES = { es: './', en: 'en.html', it: 'it.html', fr: 'fr.html', de: 'de.html', zh: 'zh.html', ar: 'ar.html' };
+  var MSGS = {
+    es: { msg:'Este sitio también está en español.', go:'Ver en español', close:'Cerrar' },
+    en: { msg:'This site is also available in English.', go:'View in English', close:'Close' },
+    it: { msg:'Questo sito è disponibile anche in italiano.', go:'Vedi in italiano', close:'Chiudi' },
+    fr: { msg:'Ce site existe aussi en français.', go:'Voir en français', close:'Fermer' },
+    de: { msg:'Diese Website gibt es auch auf Deutsch.', go:'Auf Deutsch ansehen', close:'Schließen' },
+    zh: { msg:'本网站另有中文版。', go:'查看中文版', close:'关闭' },
+    ar: { msg:'هذا الموقع متاح أيضاً باللغة العربية.', go:'عرض النسخة العربية', close:'إغلاق' }
+  };
+  var page = (document.documentElement.lang || 'es').slice(0, 2).toLowerCase();
+  if (!PAGES[page]) { page = 'es'; }
+
+  /* 1. Selector */
+  var sel = document.getElementById('langSel');
+  if (sel) {
+    var mq = window.matchMedia('(max-width:860px)');
+    var relabel = function(){
+      for (var i = 0; i < sel.options.length; i++) {
+        var o = sel.options[i];
+        if (!o.getAttribute('data-long')) { o.setAttribute('data-long', o.textContent); }
+        o.textContent = mq.matches ? (o.getAttribute('data-short') || o.getAttribute('data-long')) : o.getAttribute('data-long');
+      }
+    };
+    relabel();
+    if (mq.addEventListener) { mq.addEventListener('change', relabel); } else if (mq.addListener) { mq.addListener(relabel); }
+    sel.addEventListener('change', function(){
+      var href = sel.value;
+      var code = 'es';
+      for (var c in PAGES) { if (PAGES[c] === href) { code = c; } }
+      try { localStorage.setItem(KEY, code); } catch (e) {}
+      location.href = href + (location.hash || '');
+    });
+  }
+
+  /* 2. Aviso */
   var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
-  var hasEs = false;
-  for (var i = 0; i < langs.length; i++) { if (/^es\b/i.test(langs[i] || '')) { hasEs = true; break; } }
-  var firstEs = /^es\b/i.test(langs[0] || '');
-
-  var offer = pageEn ? firstEs : !hasEs;
-  if (!offer) return;
-  try { if (localStorage.getItem(KEY)) return; } catch (e) {}
-
-  var T = pageEn
-    ? { msg: 'Este sitio también está en español.', go: 'Ver en español', href: './', close: 'Cerrar', lang: 'es' }
-    : { msg: 'This site is also available in English.', go: 'View in English', href: 'en.html', close: 'Close', lang: 'en' };
+  var first = ((langs[0] || '').slice(0, 2)).toLowerCase();
+  if (!PAGES[first] || first === page) { return; }
+  try { if (localStorage.getItem(KEY)) { return; } } catch (e) {}
+  var T = MSGS[first];
+  if (!T) { return; }
+  var rtl = first === 'ar';
 
   function remember(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
 
@@ -41,16 +71,17 @@
   function show(){
     var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
     var box = document.createElement('div');
-    box.id = 'sbga-lang'; box.setAttribute('role', 'region'); box.setAttribute('lang', T.lang); box.setAttribute('aria-label', T.msg);
-    box.innerHTML = '<p>' + T.msg + '</p><a href="' + T.href + '" hreflang="' + T.lang + '">' + T.go + '</a>' +
+    box.id = 'sbga-lang'; box.setAttribute('role', 'region'); box.setAttribute('lang', first); box.setAttribute('aria-label', T.msg);
+    box.setAttribute('dir', rtl ? 'rtl' : 'ltr');
+    box.innerHTML = '<p>' + T.msg + '</p><a href="' + PAGES[first] + '" hreflang="' + first + '">' + T.go + '</a>' +
       '<button type="button" aria-label="' + T.close + '"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
     var top = document.querySelector('.top');
     var place = function(){ box.style.top = ((top ? top.getBoundingClientRect().height : 64) + 10) + 'px'; };
     place(); window.addEventListener('resize', place);
     var a = box.querySelector('a');
-    a.addEventListener('click', function(){ remember(T.lang); a.href = T.href + (location.hash || ''); });
+    a.addEventListener('click', function(){ remember(first); a.href = PAGES[first] + (location.hash || ''); });
     box.querySelector('button').addEventListener('click', function(){
-      remember(pageEn ? 'en' : 'es'); box.classList.remove('on'); setTimeout(function(){ box.remove(); }, 400);
+      remember(page); box.classList.remove('on'); setTimeout(function(){ box.remove(); }, 400);
     });
     // Al bajar más allá de la portada se retira sin recordar la decisión: vuelve a ofrecerse en la próxima visita.
     var onScroll = function(){

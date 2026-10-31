@@ -1,0 +1,20 @@
+{
+ "btn": "Pregunte al asistente",
+ "btnShort": "Chat",
+ "sub": "Asistente del proyecto",
+ "hello": "Buen día. Puedo responder sus preguntas sobre la isla, las parcelas tituladas, el proceso de adquisición y el servicio de desarrollo llave en mano. ¿En qué puedo ayudarle?",
+ "chip1": "¿Las parcelas están tituladas?",
+ "chip2": "¿Cómo se llega a la isla?",
+ "chip3": "Quiero agendar una visita",
+ "tip": "¿Tiene preguntas sobre la isla? Escríbame aquí.",
+ "ph": "Escriba su consulta…",
+ "send": "Enviar",
+ "note": "Respuestas generadas con IA. Precios, disponibilidad y condiciones vinculantes se confirman por escrito por nuestro equipo.",
+ "err": "El asistente no está disponible en este momento. Puede escribirnos por <a href=\"https://wa.me/16159381935\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> o a <a href=\"mailto:sales@projectconsultingfirm.com\">sales@projectconsultingfirm.com</a>.",
+ "close": "Cerrar",
+ "closeTip": "Descartar",
+ "offerMsg": "Este sitio también está en español.",
+ "offerGo": "Ver en español",
+ "langLabel": "Idioma",
+ "langName": "Español"
+}
