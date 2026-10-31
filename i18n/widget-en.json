@@ -1,0 +1,20 @@
+{
+ "btn": "Ask our assistant",
+ "btnShort": "Chat",
+ "sub": "Project assistant",
+ "hello": "Good day. I can answer your questions about the island, the titled parcels, the acquisition process and the turnkey development service. How may I help you?",
+ "chip1": "Are the parcels titled?",
+ "chip2": "How do I get to the island?",
+ "chip3": "I would like to schedule a visit",
+ "tip": "Questions about the island? Ask me here.",
+ "ph": "Write your question…",
+ "send": "Send",
+ "note": "AI-generated answers. Pricing, availability and binding terms are confirmed in writing by our team.",
+ "err": "The assistant is unavailable right now. You can write to us on <a href=\"https://wa.me/16159381935\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> or at <a href=\"mailto:sales@projectconsultingfirm.com\">sales@projectconsultingfirm.com</a>.",
+ "close": "Close",
+ "closeTip": "Dismiss",
+ "offerMsg": "This site is also available in English.",
+ "offerGo": "View in English",
+ "langLabel": "Language",
+ "langName": "English"
+}

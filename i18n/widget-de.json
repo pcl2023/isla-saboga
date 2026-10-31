@@ -1,0 +1,20 @@
+{
+ "btn": "Assistenten fragen",
+ "btnShort": "Chat",
+ "sub": "Projektassistent",
+ "hello": "Guten Tag. Ich beantworte Ihre Fragen zur Insel, zu den eingetragenen Grundstücken, zum Erwerbsprozess und zum schlüsselfertigen Bauservice. Womit kann ich Ihnen helfen?",
+ "chip1": "Sind die Grundstücke im Grundbuch?",
+ "chip2": "Wie komme ich zur Insel?",
+ "chip3": "Ich möchte eine Besichtigung vereinbaren",
+ "tip": "Fragen zur Insel? Stellen Sie sie hier.",
+ "ph": "Schreiben Sie Ihre Frage…",
+ "send": "Senden",
+ "note": "KI-generierte Antworten. Preise, Verfügbarkeit und verbindliche Bedingungen bestätigt unser Team schriftlich.",
+ "err": "Der Assistent ist derzeit nicht erreichbar. Sie können uns über <a href=\"https://wa.me/16159381935\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> oder an <a href=\"mailto:sales@projectconsultingfirm.com\">sales@projectconsultingfirm.com</a> schreiben.",
+ "close": "Schließen",
+ "closeTip": "Ausblenden",
+ "offerMsg": "Diese Website gibt es auch auf Deutsch.",
+ "offerGo": "Auf Deutsch ansehen",
+ "langLabel": "Sprache",
+ "langName": "Deutsch"
+}

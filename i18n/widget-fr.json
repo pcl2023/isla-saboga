@@ -1,0 +1,20 @@
+{
+ "btn": "Interroger l’assistant",
+ "btnShort": "Chat",
+ "sub": "Assistant du projet",
+ "hello": "Bonjour. Je peux répondre à vos questions sur l’île, les parcelles titrées, le processus d’acquisition et le service de développement clé en main. Comment puis-je vous aider ?",
+ "chip1": "Les parcelles sont-elles titrées ?",
+ "chip2": "Comment se rendre sur l’île ?",
+ "chip3": "Je souhaite programmer une visite",
+ "tip": "Des questions sur l’île ? Posez-les ici.",
+ "ph": "Écrivez votre question…",
+ "send": "Envoyer",
+ "note": "Réponses générées par IA. Les prix, la disponibilité et les conditions contractuelles sont confirmés par écrit par notre équipe.",
+ "err": "L’assistant est indisponible pour le moment. Vous pouvez nous écrire sur <a href=\"https://wa.me/16159381935\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> ou à <a href=\"mailto:sales@projectconsultingfirm.com\">sales@projectconsultingfirm.com</a>.",
+ "close": "Fermer",
+ "closeTip": "Masquer",
+ "offerMsg": "Ce site existe aussi en français.",
+ "offerGo": "Voir en français",
+ "langLabel": "Langue",
+ "langName": "Français"
+}
