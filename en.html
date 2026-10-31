@@ -157,6 +157,7 @@ section{padding-block:var(--sp-section)}
 @media (max-width:720px){.hero{height:min(86svh,720px);min-height:500px}}
 @media (prefers-reduced-motion:no-preference){.hero .poster{animation:kb 24s ease-in-out infinite alternate;transform-origin:60% 40%}@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}}
 .hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#heroVideo,#visitVideo{opacity:0;transition:opacity 1.4s ease}#heroVideo.on,#visitVideo.on{opacity:1}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,18,19,.5) 0%,rgba(6,18,19,0) 22%,rgba(6,18,19,0) 48%,rgba(6,18,19,.62) 80%,rgba(6,18,19,.86) 100%)}
 .hero .wrap{position:relative;z-index:1;width:100%;padding-block:0 clamp(2.4rem,6vh,4.5rem)}
 .hero .coords{display:flex;gap:1rem;flex-wrap:wrap;color:rgba(238,243,240,.8)}
@@ -448,7 +449,7 @@ textarea{min-height:62px;resize:vertical;border:1px solid var(--line);background
 
 /* Pie */
 footer{background:var(--deep);color:var(--on-deep-2);font-size:.7rem;padding-block:1.4rem 1.1rem;border-top:1px solid rgba(226,235,232,.1)}
-footer .grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.9fr) minmax(0,1.7fr);gap:1.5rem;align-items:start}
+footer .grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr) minmax(0,1.1fr) minmax(0,1.6fr);gap:1.5rem;align-items:start}
 footer .grid>*{min-width:0}
 footer .brand{color:var(--on-deep)}
 footer .grid>div:last-child p{font-size:.6rem;line-height:1.45;color:var(--on-deep-2);max-width:60ch}
@@ -556,9 +557,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
 <main>
 <section class="hero" id="inicio" aria-label="Cover">
   <img class="poster" src="assets/s-hero.webp" alt="" fetchpriority="high">
-  <video id="heroVideo" muted loop playsinline preload="metadata" poster="assets/s-hero.webp" aria-hidden="true">
-    <source src="assets/v-hero.mp4" type="video/mp4">
-  </video>
+  <video id="heroVideo" muted loop playsinline preload="none" poster="assets/s-hero.webp" aria-hidden="true" data-src-m="assets/v-hero-m.mp4" data-src-d="assets/v-hero-d.mp4"></video>
   <div class="wrap">
     <div class="coords mono"><span>08°37′N · 79°04′W</span><span><svg class="fl" aria-hidden="true"><use href="#f-pa"/></svg>Gulf of Panama, Panama</span></div>
     <h1>Isla Saboga</h1>
@@ -598,18 +597,18 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
       </div>
     </div>
     <div class="gallery" id="galeria">
-      <figure class="w8 rise"><div class="ph"><img src="assets/s-estero.webp" alt="Aerial view of Saboga’s estuary, beach and forest, with Contadora in the background" loading="lazy"></div><figcaption><b>01</b>Estuary and beach</figcaption></figure>
-      <figure class="w4t rise"><div class="ph"><img src="assets/s-laguna.webp" alt="White herons over the mangrove lagoon" loading="lazy"></div><figcaption><b>02</b>Herons on the lagoon</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/f-517.webp" alt="Forested headland with a cove and stone fish trap, aerial view" loading="lazy"></div><figcaption><b>03</b>Headland and fish trap</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-cala.webp" alt="Sand cove between rock and forest, aerial view" loading="lazy"></div><figcaption><b>04</b>Cove between rock and forest</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-canal.webp" alt="Turquoise tidal channel between rock slabs" loading="lazy"></div><figcaption><b>05</b>Tidal channel</figcaption></figure>
-      <figure class="w6 rise"><div class="ph"><img src="assets/f-bahia.webp" alt="Light-sand bay surrounded by tropical forest, aerial view" loading="lazy"></div><figcaption><b>06</b>Forested bay</figcaption></figure>
-      <figure class="w6 rise"><div class="ph"><img src="assets/s-herradura.webp" alt="Horseshoe-shaped beach with turquoise water" loading="lazy"></div><figcaption><b>07</b>Horseshoe beach</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-corral.webp" alt="Stone fish trap on a beach, overhead view" loading="lazy"></div><figcaption><b>08</b>Stone fish trap</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-muelle.webp" alt="The island pier over green water, overhead view" loading="lazy"></div><figcaption><b>09</b>The island pier</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-calarocosa.webp" alt="Turquoise cove between rock slabs" loading="lazy"></div><figcaption><b>10</b>Cove between rock slabs</figcaption></figure>
-      <figure class="w6s rise"><div class="ph"><img src="assets/s-playa.webp" alt="Sand beach in the afternoon sun" loading="lazy"></div><figcaption><b>11</b>Beach in the afternoon</figcaption></figure>
-      <figure class="w6s rise"><div class="ph"><img src="assets/s-manglar.webp" alt="Mangrove lagoon surrounded by forest" loading="lazy"></div><figcaption><b>12</b>Mangrove lagoon</figcaption></figure>
+      <figure class="w8 rise"><div class="ph"><img src="assets/s-estero-1200.webp" srcset="assets/s-estero-640.webp 640w, assets/s-estero-1200.webp 1200w, assets/s-estero.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 66vw, 790px" data-full="assets/s-estero.webp" alt="Aerial view of Saboga’s estuary, beach and forest, with Contadora in the background" loading="lazy"></div><figcaption><b>01</b>Estuary and beach</figcaption></figure>
+      <figure class="w4t rise"><div class="ph"><img src="assets/s-laguna-1200.webp" srcset="assets/s-laguna-640.webp 640w, assets/s-laguna-1200.webp 1200w, assets/s-laguna.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-laguna.webp" alt="White herons over the mangrove lagoon" loading="lazy"></div><figcaption><b>02</b>Herons on the lagoon</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img src="assets/f-517-1200.webp" srcset="assets/f-517-640.webp 640w, assets/f-517-1200.webp 1200w, assets/f-517.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/f-517.webp" alt="Forested headland with a cove and stone fish trap, aerial view" loading="lazy"></div><figcaption><b>03</b>Headland and fish trap</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img src="assets/s-cala-1200.webp" srcset="assets/s-cala-640.webp 640w, assets/s-cala-1200.webp 1200w, assets/s-cala.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-cala.webp" alt="Sand cove between rock and forest, aerial view" loading="lazy"></div><figcaption><b>04</b>Cove between rock and forest</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img src="assets/s-canal-1200.webp" srcset="assets/s-canal-640.webp 640w, assets/s-canal-1200.webp 1200w, assets/s-canal.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-canal.webp" alt="Turquoise tidal channel between rock slabs" loading="lazy"></div><figcaption><b>05</b>Tidal channel</figcaption></figure>
+      <figure class="w6 rise"><div class="ph"><img src="assets/f-bahia-1200.webp" srcset="assets/f-bahia-640.webp 640w, assets/f-bahia-1200.webp 1200w, assets/f-bahia.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/f-bahia.webp" alt="Light-sand bay surrounded by tropical forest, aerial view" loading="lazy"></div><figcaption><b>06</b>Forested bay</figcaption></figure>
+      <figure class="w6 rise"><div class="ph"><img src="assets/s-herradura-1200.webp" srcset="assets/s-herradura-640.webp 640w, assets/s-herradura-1200.webp 1200w, assets/s-herradura.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-herradura.webp" alt="Horseshoe-shaped beach with turquoise water" loading="lazy"></div><figcaption><b>07</b>Horseshoe beach</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img src="assets/s-corral-1200.webp" srcset="assets/s-corral-640.webp 640w, assets/s-corral-1200.webp 1200w, assets/s-corral.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-corral.webp" alt="Stone fish trap on a beach, overhead view" loading="lazy"></div><figcaption><b>08</b>Stone fish trap</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img src="assets/s-muelle-1200.webp" srcset="assets/s-muelle-640.webp 640w, assets/s-muelle-1200.webp 1200w, assets/s-muelle.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-muelle.webp" alt="The island pier over green water, overhead view" loading="lazy"></div><figcaption><b>09</b>The island pier</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img src="assets/s-calarocosa-1200.webp" srcset="assets/s-calarocosa-640.webp 640w, assets/s-calarocosa-1200.webp 1200w, assets/s-calarocosa.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-calarocosa.webp" alt="Turquoise cove between rock slabs" loading="lazy"></div><figcaption><b>10</b>Cove between rock slabs</figcaption></figure>
+      <figure class="w6s rise"><div class="ph"><img src="assets/s-playa-1200.webp" srcset="assets/s-playa-640.webp 640w, assets/s-playa-1200.webp 1200w, assets/s-playa.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-playa.webp" alt="Sand beach in the afternoon sun" loading="lazy"></div><figcaption><b>11</b>Beach in the afternoon</figcaption></figure>
+      <figure class="w6s rise"><div class="ph"><img src="assets/s-manglar-1200.webp" srcset="assets/s-manglar-640.webp 640w, assets/s-manglar-1200.webp 1200w, assets/s-manglar.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-manglar.webp" alt="Mangrove lagoon surrounded by forest" loading="lazy"></div><figcaption><b>12</b>Mangrove lagoon</figcaption></figure>
     </div>
     <div class="gallery-foot"><span>Our own photography and drone footage · Isla Saboga, 2025</span><span>Select an image to enlarge it</span></div>
   </div>
@@ -726,12 +725,12 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
       <p class="lead">Six ways to inhabit a parcel, from a private residence to low-density lodging. The images are architectural concepts; each project is defined with the buyer and processed before the Panamanian authorities.</p>
     </div>
     <div class="uses">
-      <article class="rise"><div class="img"><img src="assets/r-villa-acantilado.webp" alt="Concept: minimalist villa with a green roof and cantilevered pool over a cove" loading="lazy"></div><span class="k">01 · Residence <i>· Conceptual image</i></span><h3>Villa on the cliff</h3><p>A concrete and timber volume with a green roof, open to the sea above the rock. For hillside parcels with ocean frontage.</p><button class="more" type="button" data-uso="residencia">See matching parcels</button></article>
-      <article class="rise"><div class="img"><img src="assets/r-interior-mar.webp" alt="Concept: single-level living room open to a deck, pool and bay at sunset" loading="lazy"></div><span class="k">02 · Retirement <i>· Conceptual image</i></span><h3>Single-level residence</h3><p>Everything on one level, with the living room open to the deck and the bay. For retirement or long seasons.</p><button class="more" type="button" data-uso="retiro">See matching parcels</button></article>
-      <article class="rise"><div class="img"><img src="assets/r-posada-playa.webp" alt="Concept: inn of white and timber volumes with a pool above a white-sand beach" loading="lazy"></div><span class="k">03 · Hospitality <i>· Conceptual image</i></span><h3>Inn on the cove</h3><p>Six suites in white and timber volumes along the beach, with a restaurant open to the sea. Few-key lodging for parcels with a beach.</p><button class="more" type="button" data-uso="hospedaje">See matching parcels</button></article>
-      <article class="rise"><div class="img"><img src="assets/r-hotel-ladera.webp" alt="Concept: boutique hotel of stepped pavilions with an infinity-edge pool above a bay" loading="lazy"></div><span class="k">04 · Hospitality <i>· Conceptual image</i></span><h3>Boutique hotel</h3><p>Pavilions stepped down the hillside, an infinity-edge pool and a restaurant above the bay. For properties of one hectare or more.</p><button class="more" type="button" data-uso="hospedaje">See matching parcels</button></article>
-      <article class="rise"><div class="img"><img src="assets/r-eco-hotel.webp" alt="Concept: eco hotel of timber cabins with green roofs on stilts, a solar pavilion and a natural pool by the beach" loading="lazy"></div><span class="k">05 · Hospitality <i>· Conceptual image</i></span><h3>Eco inn</h3><p>Timber cabins with green roofs on stilts, raised walkways, a solar-powered pavilion, rainwater harvesting and a natural pool. The model most in tune with the marine refuge.</p><button class="more" type="button" data-uso="hospedaje">See matching parcels</button></article>
-      <article class="rise"><div class="img"><img src="assets/s-punta.webp" alt="Forested headland surrounded by sea on Isla Saboga, actual aerial photograph" loading="lazy"></div><span class="k">06 · Land bank <i>· Actual photograph</i></span><h3>Legacy land holding</h3><p>Buy, title in your name and keep the parcel as it is, with the option to build whenever you decide.</p><button class="more" type="button" data-uso="reserva">See matching parcels</button></article>
+      <article class="rise"><div class="img"><img src="assets/r-villa-acantilado-1200.webp" srcset="assets/r-villa-acantilado-640.webp 640w, assets/r-villa-acantilado-1200.webp 1200w, assets/r-villa-acantilado.webp 1416w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="Concept: minimalist villa with a green roof and cantilevered pool over a cove" loading="lazy"></div><span class="k">01 · Residence <i>· Conceptual image</i></span><h3>Villa on the cliff</h3><p>A concrete and timber volume with a green roof, open to the sea above the rock. For hillside parcels with ocean frontage.</p><button class="more" type="button" data-uso="residencia">See matching parcels</button></article>
+      <article class="rise"><div class="img"><img src="assets/r-interior-mar-1200.webp" srcset="assets/r-interior-mar-640.webp 640w, assets/r-interior-mar-1200.webp 1200w, assets/r-interior-mar.webp 1416w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="Concept: single-level living room open to a deck, pool and bay at sunset" loading="lazy"></div><span class="k">02 · Retirement <i>· Conceptual image</i></span><h3>Single-level residence</h3><p>Everything on one level, with the living room open to the deck and the bay. For retirement or long seasons.</p><button class="more" type="button" data-uso="retiro">See matching parcels</button></article>
+      <article class="rise"><div class="img"><img src="assets/r-posada-playa-1200.webp" srcset="assets/r-posada-playa-640.webp 640w, assets/r-posada-playa-1200.webp 1200w, assets/r-posada-playa.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="Concept: inn of white and timber volumes with a pool above a white-sand beach" loading="lazy"></div><span class="k">03 · Hospitality <i>· Conceptual image</i></span><h3>Inn on the cove</h3><p>Six suites in white and timber volumes along the beach, with a restaurant open to the sea. Few-key lodging for parcels with a beach.</p><button class="more" type="button" data-uso="hospedaje">See matching parcels</button></article>
+      <article class="rise"><div class="img"><img src="assets/r-hotel-ladera-1200.webp" srcset="assets/r-hotel-ladera-640.webp 640w, assets/r-hotel-ladera-1200.webp 1200w, assets/r-hotel-ladera.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="Concept: boutique hotel of stepped pavilions with an infinity-edge pool above a bay" loading="lazy"></div><span class="k">04 · Hospitality <i>· Conceptual image</i></span><h3>Boutique hotel</h3><p>Pavilions stepped down the hillside, an infinity-edge pool and a restaurant above the bay. For properties of one hectare or more.</p><button class="more" type="button" data-uso="hospedaje">See matching parcels</button></article>
+      <article class="rise"><div class="img"><img src="assets/r-eco-hotel-1200.webp" srcset="assets/r-eco-hotel-640.webp 640w, assets/r-eco-hotel-1200.webp 1200w, assets/r-eco-hotel.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="Concept: eco hotel of timber cabins with green roofs on stilts, a solar pavilion and a natural pool by the beach" loading="lazy"></div><span class="k">05 · Hospitality <i>· Conceptual image</i></span><h3>Eco inn</h3><p>Timber cabins with green roofs on stilts, raised walkways, a solar-powered pavilion, rainwater harvesting and a natural pool. The model most in tune with the marine refuge.</p><button class="more" type="button" data-uso="hospedaje">See matching parcels</button></article>
+      <article class="rise"><div class="img"><img src="assets/s-punta-1200.webp" srcset="assets/s-punta-640.webp 640w, assets/s-punta-1200.webp 1200w, assets/s-punta.webp 1800w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="Forested headland surrounded by sea on Isla Saboga, actual aerial photograph" loading="lazy"></div><span class="k">06 · Land bank <i>· Actual photograph</i></span><h3>Legacy land holding</h3><p>Buy, title in your name and keep the parcel as it is, with the option to build whenever you decide.</p><button class="more" type="button" data-uso="reserva">See matching parcels</button></article>
     </div>
   </div>
 </section>
@@ -789,7 +788,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
 
 <section class="visit" id="visitar" aria-label="Visit Saboga">
   <img class="bg" src="assets/s-visita.webp" alt="" loading="lazy">
-  <video id="visitVideo" muted loop playsinline preload="none" poster="assets/s-visita.webp" aria-hidden="true"><source src="assets/v-visita.mp4" type="video/mp4"></video>
+  <video id="visitVideo" muted loop playsinline preload="none" poster="assets/s-visita.webp" aria-hidden="true" data-src-m="assets/v-visita-m.mp4" data-src-d="assets/v-visita-d.mp4"></video>
   <div class="wrap">
     <div class="stack" style="max-width:560px">
       <span class="eyebrow num"><b>07</b><svg class="ic"><use href="#i-eye"/></svg>Visitar Saboga</span>
@@ -872,7 +871,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
       <div class="stack">
         <span class="eyebrow num"><b>10</b><svg class="ic"><use href="#i-user"/></svg>Contacto</span>
         <h2>MJ Davis</h2>
-        <p class="lead">Exclusive representative for the sale of Isla Saboga.</p>
+        <p class="lead">Sales contact for Isla Saboga.</p>
         <p class="mono sig">Project Consulting LLC · Nashville (Tennessee)<br>Service in English and Spanish</p>
       </div>
       <div class="rep">
@@ -896,9 +895,10 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
         <span class="mono">08°37′N · 79°04′W · Gulf of Panama</span>
       </div>
       <div><h4>Explore</h4><ul><li><svg class="ic"><use href="#i-waves"/></svg><a href="#isla">The island</a></li><li><svg class="ic"><use href="#i-map"/></svg><a href="#parcelas">Map</a></li><li><svg class="ic"><use href="#i-area"/></svg><a href="#usos">What to build</a></li><li><svg class="ic"><use href="#i-arrow"/></svg><a href="#llave">Turnkey</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><svg class="ic"><use href="#i-user"/></svg><a href="#contacto">MJ Davis · Project Consulting LLC</a></li><li><svg class="ic"><use href="#i-mail"/></svg><a href="mailto:sales@projectconsultingfirm.com?subject=Isla%20Saboga%20%C2%B7%20Information%20request">sales@projectconsultingfirm.com</a></li><li><svg class="ic"><use href="#i-phone"/></svg><a href="tel:+16159381935">+1 615 938-1935</a></li><li><svg class="ic"><use href="#i-out"/></svg><a href="https://wa.me/16159381935?text=Hello%2C%20I%27m%20interested%20in%20Isla%20Saboga." target="_blank" rel="noopener">WhatsApp</a></li><li hidden><svg class="ic"><use href="#i-out"/></svg><a data-social="instagram" href="#" target="_blank" rel="noopener">Instagram</a></li><li hidden><svg class="ic"><use href="#i-out"/></svg><a data-social="x" href="#" target="_blank" rel="noopener">X</a></li><li hidden><svg class="ic"><use href="#i-out"/></svg><a data-social="facebook" href="#" target="_blank" rel="noopener">Facebook</a></li></ul></div>
       <div><h4>Notice</h4><p>Reference information subject to documentary verification. Areas come from the cadastral survey and the aerial photography is the project’s own. Availability of each parcel is confirmed in writing. Nothing published here constitutes an investment offer or a promise of returns.</p></div>
     </div>
-    <div class="legal"><span>© 2026 Project Consulting LLC · Exclusive sales mandate</span></div>
+    <div class="legal"><span>© 2026 Project Consulting LLC · Sales and inquiries, Isla Saboga</span></div>
   </div>
 </footer>
 
@@ -966,11 +966,15 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   film.addEventListener('close', function(){ fv.pause(); fv.currentTime=0; });
   fv.addEventListener('ended', function(){ setTimeout(closeFilm, 400); });
 
-  /* Videos de fondo */
+  /* Videos de fondo: arrancan cuando la página ya cargó, en el tamaño que pide la pantalla, y nunca con ahorro de datos o red lenta */
   var vids=[document.getElementById('heroVideo'), document.getElementById('visitVideo')];
-  if(!reduce && 'IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries){ entries.forEach(function(en){ var v=en.target; if(en.isIntersecting){ if(v.preload==='none'){ v.preload='auto'; v.load(); } var pr=v.play(); if(pr&&pr.catch){ pr.catch(function(){}); } } else { v.pause(); } }); },{threshold:.15});
-    vids.forEach(function(v){ if(v){ io.observe(v); } });
+  var conn=navigator.connection||{}; var slow=!!conn.saveData||/^(slow-2g|2g|3g)$/.test(conn.effectiveType||'');
+  function vidSrc(v){ if(v.getAttribute('src')) return; var m=window.innerWidth<=720; v.src=v.getAttribute(m?'data-src-m':'data-src-d'); v.load(); }
+  function vidPlay(v){ vidSrc(v); var pr=v.play(); if(pr&&pr.catch){ pr.catch(function(){}); } }
+  if(!reduce && !slow && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){ entries.forEach(function(en){ var v=en.target; if(en.isIntersecting){ vidPlay(v); } else { v.pause(); } }); },{threshold:.15});
+    var armVids=function(){ vids.forEach(function(v){ if(v){ v.addEventListener('playing', function(){ v.classList.add('on'); }); io.observe(v); } }); };
+    if(document.readyState==='complete'){ setTimeout(armVids,600); } else { window.addEventListener('load', function(){ setTimeout(armVids,600); }); }
   }
 
   /* Mapa general de la isla: costa, bosque y playas */
@@ -1033,7 +1037,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   /* Visor de la galería */
   var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap'), lbN=document.getElementById('lbN');
   var gfigs=[].slice.call(document.querySelectorAll('#galeria figure')), gi=0;
-  function lbShow(i){ gi=(i+gfigs.length)%gfigs.length; var im=gfigs[gi].querySelector('img'); lbImg.src=im.getAttribute('src'); lbImg.alt=im.alt; lbCap.innerHTML='<b>'+gfigs[gi].querySelector('figcaption b').textContent+'</b>&nbsp; '+gfigs[gi].querySelector('figcaption').textContent.slice(2).trim(); lbN.textContent=(gi+1)+' / '+gfigs.length; }
+  function lbShow(i){ gi=(i+gfigs.length)%gfigs.length; var im=gfigs[gi].querySelector('img'); lbImg.src=im.getAttribute('data-full')||im.currentSrc||im.getAttribute('src'); lbImg.alt=im.alt; lbCap.innerHTML='<b>'+gfigs[gi].querySelector('figcaption b').textContent+'</b>&nbsp; '+gfigs[gi].querySelector('figcaption').textContent.slice(2).trim(); lbN.textContent=(gi+1)+' / '+gfigs.length; }
   gfigs.forEach(function(f,i){ f.setAttribute('tabindex','0'); f.setAttribute('role','button'); f.addEventListener('click', function(){ lbShow(i); if(lb.showModal){ lb.showModal(); } else { lb.setAttribute('open',''); } lb.focus(); }); f.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); f.click(); } }); });
   function lbClose(){ if(lb.close){ lb.close(); } else { lb.removeAttribute('open'); } setTimeout(function(){ if(!kbd && document.activeElement && document.activeElement.blur){ document.activeElement.blur(); } },0); }
   document.getElementById('lbClose').addEventListener('click', lbClose);
@@ -1154,4 +1158,5 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
 
 <script src="assets/asistente.js" data-worker="https://saboga-ai.ceo-f53.workers.dev/chat" defer></script>
 <script src="assets/idioma.js" defer></script>
+<script src="assets/redes.js" defer></script>
 <script data-goatcounter="https://islasaboga.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
