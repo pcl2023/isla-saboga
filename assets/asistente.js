@@ -1,4 +1,4 @@
-/* Asistente de Isla Saboga. Un solo archivo para index.html y en.html.
+/* Asistente de Isla Saboga. Un solo archivo para todas las páginas (es, en, it, fr, de, zh, ar).
    Config: <script src="assets/asistente.js" data-worker="https://saboga-ai....workers.dev/chat" defer></script>
    v2: botón redondo con globo de chat, aviso breve, sugerencias de inicio, no tapa la barra móvil. */
 (function(){
@@ -11,26 +11,63 @@
   // (un visitante alemán o francés en la página en español recibe el saludo en inglés).
   var LANGS = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'es'];
   var HAS_ES = false; for (var li = 0; li < LANGS.length; li++) { if (/^es\b/i.test(LANGS[li] || '')) { HAS_ES = true; break; } }
-  var EN = /^en/i.test(document.documentElement.lang || 'es') || !HAS_ES;
-  var T = EN ? {
-    btn:'Ask our assistant', btnShort:'Chat', title:'Isla Saboga', sub:'Project assistant',
-    hello:'Good day. I can answer your questions about the island, the titled parcels, the acquisition process and the turnkey development service. How may I help you?',
-    chips:['Are the parcels titled?','How do I get to the island?','I would like to schedule a visit'],
-    tip:'Questions about the island? Ask me here.',
-    ph:'Write your question…', send:'Send',
-    note:'AI-generated answers. Pricing, availability and binding terms are confirmed in writing by our team.',
-    err:'The assistant is unavailable right now. You can write to us on <a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a> or at <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>.',
-    close:'Close', closeTip:'Dismiss'
-  } : {
-    btn:'Pregunte al asistente', btnShort:'Chat', title:'Isla Saboga', sub:'Asistente del proyecto',
-    hello:'Buen día. Puedo responder sus preguntas sobre la isla, las parcelas tituladas, el proceso de adquisición y el servicio de desarrollo llave en mano. ¿En qué puedo ayudarle?',
-    chips:['¿Las parcelas están tituladas?','¿Cómo se llega a la isla?','Quiero agendar una visita'],
-    tip:'¿Tiene preguntas sobre la isla? Escríbame aquí.',
-    ph:'Escriba su consulta…', send:'Enviar',
-    note:'Respuestas generadas con IA. Precios, disponibilidad y condiciones vinculantes se confirman por escrito por nuestro equipo.',
-    err:'El asistente no está disponible en este momento. Puede escribirnos por <a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a> o a <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>.',
-    close:'Cerrar', closeTip:'Descartar'
+  // Idioma de la página (es, en, it, fr, de, zh, ar). En la página en español, si el navegador no tiene español, se usa el inglés.
+  var PAGE = (document.documentElement.lang || 'es').slice(0, 2).toLowerCase();
+  var TABLES = {
+    es: { btn:'Pregunte al asistente', btnShort:'Chat', title:'Isla Saboga', sub:'Asistente del proyecto',
+      hello:'Buen día. Puedo responder sus preguntas sobre la isla, las parcelas tituladas, el proceso de adquisición y el servicio de desarrollo llave en mano. ¿En qué puedo ayudarle?',
+      chips:['¿Las parcelas están tituladas?','¿Cómo se llega a la isla?','Quiero agendar una visita'],
+      tip:'¿Tiene preguntas sobre la isla? Escríbame aquí.', ph:'Escriba su consulta…', send:'Enviar',
+      note:'Respuestas generadas con IA. Precios, disponibilidad y condiciones vinculantes se confirman por escrito por nuestro equipo.',
+      err:'El asistente no está disponible en este momento. Puede escribirnos por <a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a> o a <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>.',
+      close:'Cerrar', closeTip:'Descartar' },
+    en: { btn:'Ask our assistant', btnShort:'Chat', title:'Isla Saboga', sub:'Project assistant',
+      hello:'Good day. I can answer your questions about the island, the titled parcels, the acquisition process and the turnkey development service. How may I help you?',
+      chips:['Are the parcels titled?','How do I get to the island?','I would like to schedule a visit'],
+      tip:'Questions about the island? Ask me here.', ph:'Write your question…', send:'Send',
+      note:'AI-generated answers. Pricing, availability and binding terms are confirmed in writing by our team.',
+      err:'The assistant is unavailable right now. You can write to us on <a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a> or at <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>.',
+      close:'Close', closeTip:'Dismiss' },
+    it: { btn:'Chieda al nostro assistente', btnShort:'Chat', title:'Isla Saboga', sub:'Assistente del progetto',
+      hello:'Buongiorno. Posso rispondere alle Sue domande sull’isola, sui lotti con titolo di proprietà, sulla procedura di acquisto e sul servizio di sviluppo chiavi in mano. Come posso aiutarLa?',
+      chips:['I lotti hanno titolo di proprietà?','Come si arriva all’isola?','Vorrei programmare una visita'],
+      tip:'Domande sull’isola? Può porle qui.', ph:'Scriva la Sua domanda…', send:'Invia',
+      note:'Risposte generate dall’IA. Prezzi, disponibilità e condizioni vincolanti vengono confermati per iscritto dal nostro team.',
+      err:'L’assistente non è disponibile al momento. Può scriverci su <a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a> o all’indirizzo <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>.',
+      close:'Chiudi', closeTip:'Ignora' },
+    fr: { btn:'Interroger l’assistant', btnShort:'Chat', title:'Isla Saboga', sub:'Assistant du projet',
+      hello:'Bonjour. Je peux répondre à vos questions sur l’île, les parcelles titrées, le processus d’acquisition et le service de développement clé en main. Comment puis-je vous aider ?',
+      chips:['Les parcelles sont-elles titrées ?','Comment se rendre sur l’île ?','Je souhaite programmer une visite'],
+      tip:'Des questions sur l’île ? Posez-les ici.', ph:'Écrivez votre question…', send:'Envoyer',
+      note:'Réponses générées par IA. Les prix, la disponibilité et les conditions contractuelles sont confirmés par écrit par notre équipe.',
+      err:'L’assistant est indisponible pour le moment. Vous pouvez nous écrire sur <a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a> ou à <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>.',
+      close:'Fermer', closeTip:'Masquer' },
+    de: { btn:'Assistenten fragen', btnShort:'Chat', title:'Isla Saboga', sub:'Projektassistent',
+      hello:'Guten Tag. Ich beantworte Ihre Fragen zur Insel, zu den eingetragenen Grundstücken, zum Erwerbsprozess und zum schlüsselfertigen Bauservice. Womit kann ich Ihnen helfen?',
+      chips:['Sind die Grundstücke im Grundbuch?','Wie komme ich zur Insel?','Ich möchte eine Besichtigung vereinbaren'],
+      tip:'Fragen zur Insel? Stellen Sie sie hier.', ph:'Schreiben Sie Ihre Frage…', send:'Senden',
+      note:'KI-generierte Antworten. Preise, Verfügbarkeit und verbindliche Bedingungen bestätigt unser Team schriftlich.',
+      err:'Der Assistent ist derzeit nicht erreichbar. Sie können uns über <a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a> oder an <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a> schreiben.',
+      close:'Schließen', closeTip:'Ausblenden' },
+    zh: { btn:'咨询我们的助手', btnShort:'对话', title:'Isla Saboga', sub:'项目助手',
+      hello:'您好。我可以回答您关于本岛、产权登记地块、购置流程以及交钥匙开发服务的问题。请问有什么可以帮您？',
+      chips:['地块有产权登记吗？','如何前往岛上？','我想预约参观'],
+      tip:'对岛屿有疑问？在这里提问。', ph:'请输入您的问题…', send:'发送',
+      note:'回答由人工智能生成。价格、供应情况和具有约束力的条款由我们的团队以书面形式确认。',
+      err:'助手暂时不可用。您可以通过<a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a>或邮件<a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>与我们联系。',
+      close:'关闭', closeTip:'关闭提示' },
+    ar: { btn:'اسألوا مساعدنا', btnShort:'محادثة', title:'Isla Saboga', sub:'مساعد المشروع',
+      hello:'طاب يومكم. يمكنني الإجابة عن أسئلتكم حول الجزيرة، وقطع الأراضي المسجّلة الملكية، وإجراءات التملّك، وخدمة التطوير بنظام تسليم المفتاح. كيف يمكنني مساعدتكم؟',
+      chips:['هل قطع الأراضي مسجّلة الملكية؟','كيف أصل إلى الجزيرة؟','أرغب في تحديد موعد زيارة'],
+      tip:'لديكم أسئلة عن الجزيرة؟ اطرحوها هنا.', ph:'اكتبوا سؤالكم…', send:'إرسال',
+      note:'إجابات مولَّدة بالذكاء الاصطناعي. الأسعار والتوافر والشروط الملزمة يؤكدها فريقنا كتابياً.',
+      err:'المساعد غير متاح حالياً. يمكنكم مراسلتنا عبر <a href="https://wa.me/16159381935" target="_blank" rel="noopener">WhatsApp</a> أو على <a href="mailto:sales@projectconsultingfirm.com">sales@projectconsultingfirm.com</a>.',
+      close:'إغلاق', closeTip:'إخفاء' }
   };
+  if (PAGE === 'es' && !HAS_ES) { PAGE = 'en'; }
+  if (!TABLES[PAGE]) { PAGE = 'en'; }
+  var EN = PAGE !== 'es';
+  var T = TABLES[PAGE];
 
   var ICON_CHAT = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M8 12h.01M12 12h.01M16 12h.01" stroke-width="2.6"/></svg>';
   var ICON_SEND = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg>';
@@ -232,7 +269,7 @@
     fetch(WORKER, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ messages: history.slice(-16), lang: EN?'en':'es', page: location.pathname })
+      body: JSON.stringify({ messages: history.slice(-16), lang: EN?'en':'es', pageLang: PAGE, page: location.pathname })
     })
     .then(function(r){ if(!r.ok){ throw new Error('http '+r.status); } return r.json(); })
     .then(function(j){
