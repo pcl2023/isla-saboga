@@ -2,9 +2,12 @@
 <style>html[lang=zh]{--f-display:"Noto Sans SC","Schibsted Grotesk","PingFang SC","Microsoft YaHei",sans-serif;--f-body:"Noto Sans SC","Schibsted Grotesk","PingFang SC","Microsoft YaHei",sans-serif;--f-mono:"Noto Sans SC","Schibsted Grotesk",sans-serif}html[lang=zh] body{line-height:1.75}html[lang=zh] h1,html[lang=zh] h2,html[lang=zh] h3{letter-spacing:0;line-height:1.3}html[lang=zh] .eyebrow,html[lang=zh] .mono,html[lang=zh] footer h4,html[lang=zh] .k{letter-spacing:.06em}</style></head><body>
 
 
+<link rel="preload" href="assets/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 600;font-display:swap;src:url(assets/schibsted-grotesk.woff2) format("woff2")}@font-face{font-family:"Schibsted Grotesk";font-style:italic;font-weight:400;font-display:swap;src:url(assets/schibsted-grotesk-italic.woff2) format("woff2")}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Color+Emoji&family=Noto+Sans+SC:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Sans+SC:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Sans+SC:wght@400;500;600&display=swap"></noscript>
 <link rel="preload" as="image" href="assets/s-hero.webp" fetchpriority="high">
 <style>
 /* Layout: carta náutica y plano catastral. Portada a sangre con un solo gesto, bandas editoriales con aire, una banda profunda para el mapa y otra para el acceso. */
@@ -241,10 +244,10 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 @media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
 .mapframe{position:relative;border:1px solid rgba(226,235,232,.16);background:#0D2A2D;overflow:hidden}
 #mapa{width:100%;height:auto;display:block;touch-action:manipulation}
-#mapa .costa{fill:none;stroke:#7FE3D5;stroke-width:2.4;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px rgba(6,18,19,.6))}
+#mapa .costa{fill:none;stroke:var(--pick);stroke-width:2.2;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px rgba(6,18,19,.7))}
 #mapa .bosque{fill:rgba(120,214,150,.30);stroke:rgba(160,232,180,.35);stroke-width:.8;vector-effect:non-scaling-stroke}
 #mapa .playa{fill:rgba(247,221,176,.88);stroke:rgba(247,221,176,.95);stroke-width:1;vector-effect:non-scaling-stroke}
-.lg-costa{border:0!important;border-top:2px solid #7FE3D5!important;height:0!important}.lg-bosque{background:rgba(120,214,150,.45)}.lg-playa{background:rgba(247,221,176,.9)}
+.lg-costa{border:0!important;border-top:2px solid var(--pick)!important;height:0!important}.lg-bosque{background:rgba(120,214,150,.45)}.lg-playa{background:rgba(247,221,176,.9)}
 #mapa .via{fill:none;stroke:rgba(255,255,255,.42);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 #mapa .serv{fill:none;stroke:rgba(255,255,255,.28);stroke-width:1;stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
 #mapa .lim{fill:none;stroke:rgba(92,201,187,.75);stroke-width:1.6;stroke-dasharray:8 5;vector-effect:non-scaling-stroke}
@@ -595,18 +598,18 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
       </div>
     </div>
     <div class="gallery" id="galeria">
-      <figure class="w8 rise"><div class="ph"><img src="assets/s-estero-1200.webp" srcset="assets/s-estero-640.webp 640w, assets/s-estero-1200.webp 1200w, assets/s-estero.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 66vw, 790px" data-full="assets/s-estero.webp" alt="萨博加岛河口、海滩与森林的航拍图，背景为Contadora岛" loading="lazy"></div><figcaption><b>01</b>河口与海滩</figcaption></figure>
-      <figure class="w4t rise"><div class="ph"><img src="assets/s-laguna-1200.webp" srcset="assets/s-laguna-640.webp 640w, assets/s-laguna-1200.webp 1200w, assets/s-laguna.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-laguna.webp" alt="红树林潟湖上空的白鹭" loading="lazy"></div><figcaption><b>02</b>潟湖上的白鹭</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/f-517-1200.webp" srcset="assets/f-517-640.webp 640w, assets/f-517-1200.webp 1200w, assets/f-517.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/f-517.webp" alt="森林覆盖的岬角，有海湾和石砌渔栅，航拍" loading="lazy"></div><figcaption><b>03</b>岬角与渔栅</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-cala-1200.webp" srcset="assets/s-cala-640.webp 640w, assets/s-cala-1200.webp 1200w, assets/s-cala.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-cala.webp" alt="岩石与森林之间的沙湾，航拍" loading="lazy"></div><figcaption><b>04</b>岩石与森林间的海湾</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-canal-1200.webp" srcset="assets/s-canal-640.webp 640w, assets/s-canal-1200.webp 1200w, assets/s-canal.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-canal.webp" alt="岩板之间的碧绿潮汐水道" loading="lazy"></div><figcaption><b>05</b>潮汐水道</figcaption></figure>
-      <figure class="w6 rise"><div class="ph"><img src="assets/f-bahia-1200.webp" srcset="assets/f-bahia-640.webp 640w, assets/f-bahia-1200.webp 1200w, assets/f-bahia.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/f-bahia.webp" alt="热带森林环绕的浅色沙滩海湾，航拍" loading="lazy"></div><figcaption><b>06</b>林中海湾</figcaption></figure>
-      <figure class="w6 rise"><div class="ph"><img src="assets/s-herradura-1200.webp" srcset="assets/s-herradura-640.webp 640w, assets/s-herradura-1200.webp 1200w, assets/s-herradura.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-herradura.webp" alt="马蹄形海滩与碧绿海水" loading="lazy"></div><figcaption><b>07</b>马蹄形海滩</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-corral-1200.webp" srcset="assets/s-corral-640.webp 640w, assets/s-corral-1200.webp 1200w, assets/s-corral.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-corral.webp" alt="海滩上的石砌渔栅，俯视" loading="lazy"></div><figcaption><b>08</b>石砌渔栅</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-muelle-1200.webp" srcset="assets/s-muelle-640.webp 640w, assets/s-muelle-1200.webp 1200w, assets/s-muelle.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-muelle.webp" alt="绿色海水上的岛屿码头，俯视" loading="lazy"></div><figcaption><b>09</b>岛屿码头</figcaption></figure>
-      <figure class="w4 rise"><div class="ph"><img src="assets/s-calarocosa-1200.webp" srcset="assets/s-calarocosa-640.webp 640w, assets/s-calarocosa-1200.webp 1200w, assets/s-calarocosa.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-calarocosa.webp" alt="岩板之间的碧绿海湾" loading="lazy"></div><figcaption><b>10</b>岩板间的海湾</figcaption></figure>
-      <figure class="w6s rise"><div class="ph"><img src="assets/s-playa-1200.webp" srcset="assets/s-playa-640.webp 640w, assets/s-playa-1200.webp 1200w, assets/s-playa.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-playa.webp" alt="午后阳光下的沙滩" loading="lazy"></div><figcaption><b>11</b>午后的海滩</figcaption></figure>
-      <figure class="w6s rise"><div class="ph"><img src="assets/s-manglar-1200.webp" srcset="assets/s-manglar-640.webp 640w, assets/s-manglar-1200.webp 1200w, assets/s-manglar.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-manglar.webp" alt="森林环绕的红树林潟湖" loading="lazy"></div><figcaption><b>12</b>红树林潟湖</figcaption></figure>
+      <figure class="w8 rise"><div class="ph"><img data-src="assets/s-estero-1200.webp" data-srcset="assets/s-estero-640.webp 640w, assets/s-estero-1200.webp 1200w, assets/s-estero.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 66vw, 790px" data-full="assets/s-estero.webp" alt="萨博加岛河口、海滩与森林的航拍图，背景为Contadora岛" loading="lazy"></div><figcaption><b>01</b>河口与海滩</figcaption></figure>
+      <figure class="w4t rise"><div class="ph"><img data-src="assets/s-laguna-1200.webp" data-srcset="assets/s-laguna-640.webp 640w, assets/s-laguna-1200.webp 1200w, assets/s-laguna.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-laguna.webp" alt="红树林潟湖上空的白鹭" loading="lazy"></div><figcaption><b>02</b>潟湖上的白鹭</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img data-src="assets/f-517-1200.webp" data-srcset="assets/f-517-640.webp 640w, assets/f-517-1200.webp 1200w, assets/f-517.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/f-517.webp" alt="森林覆盖的岬角，有海湾和石砌渔栅，航拍" loading="lazy"></div><figcaption><b>03</b>岬角与渔栅</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img data-src="assets/s-cala-1200.webp" data-srcset="assets/s-cala-640.webp 640w, assets/s-cala-1200.webp 1200w, assets/s-cala.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-cala.webp" alt="岩石与森林之间的沙湾，航拍" loading="lazy"></div><figcaption><b>04</b>岩石与森林间的海湾</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img data-src="assets/s-canal-1200.webp" data-srcset="assets/s-canal-640.webp 640w, assets/s-canal-1200.webp 1200w, assets/s-canal.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-canal.webp" alt="岩板之间的碧绿潮汐水道" loading="lazy"></div><figcaption><b>05</b>潮汐水道</figcaption></figure>
+      <figure class="w6 rise"><div class="ph"><img data-src="assets/f-bahia-1200.webp" data-srcset="assets/f-bahia-640.webp 640w, assets/f-bahia-1200.webp 1200w, assets/f-bahia.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/f-bahia.webp" alt="热带森林环绕的浅色沙滩海湾，航拍" loading="lazy"></div><figcaption><b>06</b>林中海湾</figcaption></figure>
+      <figure class="w6 rise"><div class="ph"><img data-src="assets/s-herradura-1200.webp" data-srcset="assets/s-herradura-640.webp 640w, assets/s-herradura-1200.webp 1200w, assets/s-herradura.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-herradura.webp" alt="马蹄形海滩与碧绿海水" loading="lazy"></div><figcaption><b>07</b>马蹄形海滩</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img data-src="assets/s-corral-1200.webp" data-srcset="assets/s-corral-640.webp 640w, assets/s-corral-1200.webp 1200w, assets/s-corral.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-corral.webp" alt="海滩上的石砌渔栅，俯视" loading="lazy"></div><figcaption><b>08</b>石砌渔栅</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img data-src="assets/s-muelle-1200.webp" data-srcset="assets/s-muelle-640.webp 640w, assets/s-muelle-1200.webp 1200w, assets/s-muelle.webp 1800w" sizes="(max-width:720px) 50vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-muelle.webp" alt="绿色海水上的岛屿码头，俯视" loading="lazy"></div><figcaption><b>09</b>岛屿码头</figcaption></figure>
+      <figure class="w4 rise"><div class="ph"><img data-src="assets/s-calarocosa-1200.webp" data-srcset="assets/s-calarocosa-640.webp 640w, assets/s-calarocosa-1200.webp 1200w, assets/s-calarocosa.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 33vw, 400px" data-full="assets/s-calarocosa.webp" alt="岩板之间的碧绿海湾" loading="lazy"></div><figcaption><b>10</b>岩板间的海湾</figcaption></figure>
+      <figure class="w6s rise"><div class="ph"><img data-src="assets/s-playa-1200.webp" data-srcset="assets/s-playa-640.webp 640w, assets/s-playa-1200.webp 1200w, assets/s-playa.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-playa.webp" alt="午后阳光下的沙滩" loading="lazy"></div><figcaption><b>11</b>午后的海滩</figcaption></figure>
+      <figure class="w6s rise"><div class="ph"><img data-src="assets/s-manglar-1200.webp" data-srcset="assets/s-manglar-640.webp 640w, assets/s-manglar-1200.webp 1200w, assets/s-manglar.webp 1800w" sizes="(max-width:720px) 100vw, (max-width:1200px) 50vw, 600px" data-full="assets/s-manglar.webp" alt="森林环绕的红树林潟湖" loading="lazy"></div><figcaption><b>12</b>红树林潟湖</figcaption></figure>
     </div>
     <div class="gallery-foot"><span>自有摄影及无人机航拍 · Isla Saboga，2025年</span><span>点击图片可放大</span></div>
   </div>
@@ -675,7 +678,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
       <div>
         <div class="mapframe" id="mapframe">
           <svg id="mapa" viewBox="200 560 1320 1800" role="img" aria-label="General map of Isla Saboga showing its coastline, forest and beaches over an aerial photograph">
-            <image href="assets/mosaico.webp" x="0" y="0" width="1600" height="2581"/>
+            <image data-href="assets/mosaico.webp" data-href-m="assets/mosaico-1200.webp" x="0" y="0" width="1600" height="2581"/>
             <g id="gBosque"></g><g id="gPlaya"></g><g id="gCosta"></g>
             <g class="north" transform="translate(1440 650)">
               <path d="M0 -40 L14 10 L0 0 L-14 10 Z" fill="#E6EEEA"/>
@@ -723,12 +726,12 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
       <p class="lead">六种使用地块的方式，从私人住宅到低密度住宿。图片为建筑概念图；每个项目均与买家共同确定，并向巴拿马主管部门报批。</p>
     </div>
     <div class="uses">
-      <article class="rise"><div class="img"><img src="assets/r-villa-acantilado-1200.webp" srcset="assets/r-villa-acantilado-640.webp 640w, assets/r-villa-acantilado-1200.webp 1200w, assets/r-villa-acantilado.webp 1416w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：极简别墅，绿化屋顶，悬挑泳池伸向海湾" loading="lazy"></div><span class="k">01 · 住宅 <i>· 概念图</i></span><h3>崖顶别墅</h3><p>混凝土与木材构成的体量，覆以绿化屋顶，在岩石之上面向大海。适合临海的坡地地块。</p><button class="more" type="button" data-uso="residencia">查看匹配地块</button></article>
-      <article class="rise"><div class="img"><img src="assets/r-interior-mar-1200.webp" srcset="assets/r-interior-mar-640.webp 640w, assets/r-interior-mar-1200.webp 1200w, assets/r-interior-mar.webp 1416w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：单层客厅向露台、泳池和夕阳下的海湾敞开" loading="lazy"></div><span class="k">02 · 退休 <i>· 概念图</i></span><h3>单层住宅</h3><p>一切都在同一层，客厅向露台和海湾敞开。适合退休生活或长期居住。</p><button class="more" type="button" data-uso="retiro">查看匹配地块</button></article>
-      <article class="rise"><div class="img"><img src="assets/r-posada-playa-1200.webp" srcset="assets/r-posada-playa-640.webp 640w, assets/r-posada-playa-1200.webp 1200w, assets/r-posada-playa.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：白色与木质体量的客栈，泳池位于白沙滩之上" loading="lazy"></div><span class="k">03 · 酒店 <i>· 概念图</i></span><h3>海湾客栈</h3><p>六间套房分布于沿海滩排列的白色与木质体量中，配有面向大海的餐厅。适合带海滩地块的小规模住宿。</p><button class="more" type="button" data-uso="hospedaje">查看匹配地块</button></article>
-      <article class="rise"><div class="img"><img src="assets/r-hotel-ladera-1200.webp" srcset="assets/r-hotel-ladera-640.webp 640w, assets/r-hotel-ladera-1200.webp 1200w, assets/r-hotel-ladera.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：阶梯式亭阁组成的精品酒店，无边泳池俯瞰海湾" loading="lazy"></div><span class="k">04 · 酒店 <i>· 概念图</i></span><h3>精品酒店</h3><p>沿山坡逐级而下的建筑单元、无边泳池和俯瞰海湾的餐厅。适合一公顷及以上的地产。</p><button class="more" type="button" data-uso="hospedaje">查看匹配地块</button></article>
-      <article class="rise"><div class="img"><img src="assets/r-eco-hotel-1200.webp" srcset="assets/r-eco-hotel-640.webp 640w, assets/r-eco-hotel-1200.webp 1200w, assets/r-eco-hotel.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：架空木屋配绿化屋顶的生态酒店，太阳能亭阁和海滩旁的天然泳池" loading="lazy"></div><span class="k">05 · 酒店 <i>· 概念图</i></span><h3>生态客栈</h3><p>架空的木屋配绿化屋顶、高架步道、太阳能供电的亭阁、雨水收集和天然泳池。这是与海洋保护区最为契合的模式。</p><button class="more" type="button" data-uso="hospedaje">查看匹配地块</button></article>
-      <article class="rise"><div class="img"><img src="assets/s-punta-1200.webp" srcset="assets/s-punta-640.webp 640w, assets/s-punta-1200.webp 1200w, assets/s-punta.webp 1800w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="Isla Saboga被海水环绕的森林岬角，实景航拍照片" loading="lazy"></div><span class="k">06 · 土地储备 <i>· 实景照片</i></span><h3>传承型土地持有</h3><p>购买并登记在您名下，保持地块原貌，待您决定之时再行建造。</p><button class="more" type="button" data-uso="reserva">查看匹配地块</button></article>
+      <article class="rise"><div class="img"><img data-src="assets/r-villa-acantilado-1200.webp" data-srcset="assets/r-villa-acantilado-640.webp 640w, assets/r-villa-acantilado-1200.webp 1200w, assets/r-villa-acantilado.webp 1416w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：极简别墅，绿化屋顶，悬挑泳池伸向海湾" loading="lazy"></div><span class="k">01 · 住宅 <i>· 概念图</i></span><h3>崖顶别墅</h3><p>混凝土与木材构成的体量，覆以绿化屋顶，在岩石之上面向大海。适合临海的坡地地块。</p><button class="more" type="button" data-uso="residencia">查看匹配地块</button></article>
+      <article class="rise"><div class="img"><img data-src="assets/r-interior-mar-1200.webp" data-srcset="assets/r-interior-mar-640.webp 640w, assets/r-interior-mar-1200.webp 1200w, assets/r-interior-mar.webp 1416w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：单层客厅向露台、泳池和夕阳下的海湾敞开" loading="lazy"></div><span class="k">02 · 退休 <i>· 概念图</i></span><h3>单层住宅</h3><p>一切都在同一层，客厅向露台和海湾敞开。适合退休生活或长期居住。</p><button class="more" type="button" data-uso="retiro">查看匹配地块</button></article>
+      <article class="rise"><div class="img"><img data-src="assets/r-posada-playa-1200.webp" data-srcset="assets/r-posada-playa-640.webp 640w, assets/r-posada-playa-1200.webp 1200w, assets/r-posada-playa.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：白色与木质体量的客栈，泳池位于白沙滩之上" loading="lazy"></div><span class="k">03 · 酒店 <i>· 概念图</i></span><h3>海湾客栈</h3><p>六间套房分布于沿海滩排列的白色与木质体量中，配有面向大海的餐厅。适合带海滩地块的小规模住宿。</p><button class="more" type="button" data-uso="hospedaje">查看匹配地块</button></article>
+      <article class="rise"><div class="img"><img data-src="assets/r-hotel-ladera-1200.webp" data-srcset="assets/r-hotel-ladera-640.webp 640w, assets/r-hotel-ladera-1200.webp 1200w, assets/r-hotel-ladera.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：阶梯式亭阁组成的精品酒店，无边泳池俯瞰海湾" loading="lazy"></div><span class="k">04 · 酒店 <i>· 概念图</i></span><h3>精品酒店</h3><p>沿山坡逐级而下的建筑单元、无边泳池和俯瞰海湾的餐厅。适合一公顷及以上的地产。</p><button class="more" type="button" data-uso="hospedaje">查看匹配地块</button></article>
+      <article class="rise"><div class="img"><img data-src="assets/r-eco-hotel-1200.webp" data-srcset="assets/r-eco-hotel-640.webp 640w, assets/r-eco-hotel-1200.webp 1200w, assets/r-eco-hotel.webp 1456w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="概念图：架空木屋配绿化屋顶的生态酒店，太阳能亭阁和海滩旁的天然泳池" loading="lazy"></div><span class="k">05 · 酒店 <i>· 概念图</i></span><h3>生态客栈</h3><p>架空的木屋配绿化屋顶、高架步道、太阳能供电的亭阁、雨水收集和天然泳池。这是与海洋保护区最为契合的模式。</p><button class="more" type="button" data-uso="hospedaje">查看匹配地块</button></article>
+      <article class="rise"><div class="img"><img data-src="assets/s-punta-1200.webp" data-srcset="assets/s-punta-640.webp 640w, assets/s-punta-1200.webp 1200w, assets/s-punta.webp 1800w" sizes="(max-width:520px) 100vw, (max-width:900px) 50vw, 380px" alt="Isla Saboga被海水环绕的森林岬角，实景航拍照片" loading="lazy"></div><span class="k">06 · 土地储备 <i>· 实景照片</i></span><h3>传承型土地持有</h3><p>购买并登记在您名下，保持地块原貌，待您决定之时再行建造。</p><button class="more" type="button" data-uso="reserva">查看匹配地块</button></article>
     </div>
   </div>
 </section>
@@ -785,8 +788,8 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
 </section>
 
 <section class="visit" id="visitar" aria-label="参观萨博加岛">
-  <img class="bg" src="assets/s-visita.webp" alt="" loading="lazy">
-  <video id="visitVideo" muted loop playsinline preload="none" poster="assets/s-visita.webp" aria-hidden="true" data-src-m="assets/v-visita-m.mp4" data-src-d="assets/v-visita-d.mp4"></video>
+  <img class="bg" data-src="assets/s-visita.webp" alt="" loading="lazy">
+  <video id="visitVideo" muted loop playsinline preload="none" aria-hidden="true" data-src-m="assets/v-visita-m.mp4" data-src-d="assets/v-visita-d.mp4"></video>
   <div class="wrap">
     <div class="stack" style="max-width:560px">
       <span class="eyebrow num"><b>07</b><svg class="ic"><use href="#i-eye"/></svg>参观萨博加岛</span>
@@ -972,7 +975,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   if(!reduce && !slow && 'IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){ entries.forEach(function(en){ var v=en.target; if(en.isIntersecting){ vidPlay(v); } else { v.pause(); } }); },{threshold:.15});
     var armVids=function(){ vids.forEach(function(v){ if(v){ v.addEventListener('playing', function(){ v.classList.add('on'); }); io.observe(v); } }); };
-    if(document.readyState==='complete'){ setTimeout(armVids,600); } else { window.addEventListener('load', function(){ setTimeout(armVids,600); }); }
+    if(document.readyState==='complete'){ setTimeout(armVids,window.innerWidth<=720?2500:600); } else { window.addEventListener('load', function(){ setTimeout(armVids,window.innerWidth<=720?2500:600); }); }
   }
 
   /* Mapa general de la isla: costa, bosque y playas */
@@ -1155,6 +1158,6 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
 </script>
 
 <script src="assets/asistente.js" data-worker="https://saboga-ai.ceo-f53.workers.dev/chat" defer></script>
-<script src="assets/idioma.js" defer></script>
+<script src="assets/idioma.js" defer></script><script src="assets/diferido.js" defer></script>
 <script src="assets/redes.js" defer></script>
 <script data-goatcounter="https://islasaboga.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
