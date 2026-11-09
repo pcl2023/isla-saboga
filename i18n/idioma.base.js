@@ -15,12 +15,26 @@
   /* 1. Selector */
   var sel = document.getElementById('langSel');
   if (sel) {
+    /* Banderas delante de cada idioma. Se dibujan con Noto Color Emoji (la misma fuente de .flag), así también se ven en Windows. */
+    var FLAG_CC = { es: 'ES', en: 'US', it: 'IT', fr: 'FR', de: 'DE', zh: 'CN', ar: 'AE' };
+    var flagOf = function(value){
+      for (var c in PAGES) {
+        if (PAGES[c] === value && FLAG_CC[c]) {
+          var cc = FLAG_CC[c];
+          return String.fromCodePoint(0x1F1E6 + cc.charCodeAt(0) - 65, 0x1F1E6 + cc.charCodeAt(1) - 65) + ' ';
+        }
+      }
+      return '';
+    };
+    sel.style.fontFamily = window.getComputedStyle(sel).fontFamily + ', "Noto Color Emoji"';
+    var globe = sel.parentNode.querySelector('.ic');
+    if (globe) { globe.style.display = 'none'; }
     var mq = window.matchMedia('(max-width:860px)');
     var relabel = function(){
       for (var i = 0; i < sel.options.length; i++) {
         var o = sel.options[i];
         if (!o.getAttribute('data-long')) { o.setAttribute('data-long', o.textContent); }
-        o.textContent = mq.matches ? (o.getAttribute('data-short') || o.getAttribute('data-long')) : o.getAttribute('data-long');
+        o.textContent = flagOf(o.value) + (mq.matches ? (o.getAttribute('data-short') || o.getAttribute('data-long')) : o.getAttribute('data-long'));
       }
     };
     relabel();

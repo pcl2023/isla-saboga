@@ -52,6 +52,7 @@ AR_CSS = ('\n<style>html[dir=rtl]{--f-display:"Noto Sans Arabic","Schibsted Grot
           'html[dir=rtl] .submit .mono{margin-left:0;margin-right:auto}'
           'html[dir=rtl] .draft{right:auto;left:max(16px,env(safe-area-inset-left,0px))}'
           'html[dir=rtl] .play{border-left:0;border-right:8px solid currentColor}'
+          'html[dir=rtl] svg text{direction:ltr}'  # rótulos de mapas: la geografía no se invierte
           'html[dir=rtl] .tels,html[dir=rtl] .mailrow a,html[dir=rtl] .coords,html[dir=rtl] footer .mono,html[dir=rtl] .figures strong{direction:ltr;unicode-bidi:isolate;display:inline-block}'
           '@media (max-width:640px){html[dir=rtl] .steps{border-left:0;border-right:1px solid var(--line);padding-left:0;padding-right:1.2rem}html[dir=rtl] .steps li::before{left:auto;right:calc(-1.2rem - 5px)}}'
           '</style>')
@@ -97,7 +98,8 @@ def build(code):
     assert block.count(' selected>') == 1, 'selector sin opción seleccionada'
     h = h[:sel.start()] + block + h[sel.end():]
     if font:
-        h = h.replace('&family=Noto+Color+Emoji&display=swap', f'&family=Noto+Color+Emoji&family={font}&display=swap', 1)
+        # la hoja de Google (emoji + fuente del idioma) aparece dos veces: carga sin bloqueo y <noscript>
+        h = h.replace('family=Noto+Color+Emoji&display=swap', f'family=Noto+Color+Emoji&family={font}&display=swap')
     extra = ZH_CSS if code == 'zh' else AR_CSS if code == 'ar' else ''
     if extra:
         h = h.replace('</style></head>', '</style>' + extra + '</head>', 1) if '</style></head>' in h else h.replace('</head>', extra + '</head>', 1)
