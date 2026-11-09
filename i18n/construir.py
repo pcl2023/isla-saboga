@@ -98,8 +98,13 @@ def build(code):
     assert block.count(' selected>') == 1, 'selector sin opción seleccionada'
     h = h[:sel.start()] + block + h[sel.end():]
     if font:
-        # la hoja de Google (emoji + fuente del idioma) aparece dos veces: carga sin bloqueo y <noscript>
-        h = h.replace('family=Noto+Color+Emoji&display=swap', f'family=Noto+Color+Emoji&family={font}&display=swap')
+        # fuente del idioma (chino, árabe) desde Google Fonts, sin bloquear la página; las banderas las resuelve idioma.js
+        g = f'https://fonts.googleapis.com/css2?family={font}&display=swap'
+        block = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+                 f'<link rel="stylesheet" href="{g}" media="print" onload="this.media=\'all\'">\n<noscript><link rel="stylesheet" href="{g}"></noscript>\n')
+        anchor = '<link rel="preload" as="image" href="assets/s-hero.webp" fetchpriority="high">'
+        assert h.count(anchor) == 1, 'ancla de la portada no encontrada'
+        h = h.replace(anchor, block + anchor, 1)
     extra = ZH_CSS if code == 'zh' else AR_CSS if code == 'ar' else ''
     if extra:
         h = h.replace('</style></head>', '</style>' + extra + '</head>', 1) if '</style></head>' in h else h.replace('</head>', extra + '</head>', 1)

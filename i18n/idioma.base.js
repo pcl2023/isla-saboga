@@ -12,10 +12,31 @@
   var page = (document.documentElement.lang || 'es').slice(0, 2).toLowerCase();
   if (!PAGES[page]) { page = 'es'; }
 
+  /* Banderas: Mac, iPhone y Android las dibujan con su propia fuente. Windows no; solo ahí se carga
+     Noto Color Emoji de Google (unos 700 KB), que usan el selector y la lista de países del formulario (.flag). */
+  var nativeFlags = (function(){
+    try {
+      var c = document.createElement('canvas'); c.width = 20; c.height = 20;
+      var x = c.getContext('2d', { willReadFrequently: true }); if (!x) { return true; }
+      x.textBaseline = 'top'; x.font = '18px sans-serif';
+      x.fillText(String.fromCodePoint(0x1F1EA, 0x1F1F8), 0, 0);
+      var d = x.getImageData(0, 0, 20, 20).data;
+      for (var i = 0; i < d.length; i += 4) {
+        if (d[i + 3] > 0 && (Math.abs(d[i] - d[i + 1]) > 40 || Math.abs(d[i + 1] - d[i + 2]) > 40)) { return true; }
+      }
+      return false;
+    } catch (e) { return true; }
+  })();
+  if (!nativeFlags) {
+    var emo = document.createElement('link'); emo.rel = 'stylesheet';
+    emo.href = 'https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap';
+    document.head.appendChild(emo);
+  }
+
   /* 1. Selector */
   var sel = document.getElementById('langSel');
   if (sel) {
-    /* Banderas delante de cada idioma. Se dibujan con Noto Color Emoji (la misma fuente de .flag), así también se ven en Windows. */
+    /* Banderas delante de cada idioma (ver nativeFlags arriba). */
     var FLAG_CC = { es: 'ES', en: 'US', it: 'IT', fr: 'FR', de: 'DE', zh: 'CN', ar: 'AE' };
     var flagOf = function(value){
       for (var c in PAGES) {
@@ -26,7 +47,7 @@
       }
       return '';
     };
-    sel.style.fontFamily = window.getComputedStyle(sel).fontFamily + ', "Noto Color Emoji"';
+    if (!nativeFlags) { sel.style.fontFamily = window.getComputedStyle(sel).fontFamily + ', "Noto Color Emoji"'; }
     var globe = sel.parentNode.querySelector('.ic');
     if (globe) { globe.style.display = 'none'; }
     var mq = window.matchMedia('(max-width:860px)');
