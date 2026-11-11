@@ -2,7 +2,7 @@
    Los navegadores no dejan sonar audio hasta que el visitante toca, hace clic o pulsa
    una tecla; la música arranca en ese primer gesto, con fundido y a volumen bajo.
    El bucle se reproduce con Web Audio (sin corte en la costura) y un filtro muy lento
-   cambia el color del sonido en cada vuelta. Botón en la cabecera (o flotante en celular); si el visitante la
+   cambia el color del sonido en cada vuelta. Botón turquesa en la cabecera (o flotante en celular); si el visitante la
    silencia, el sitio lo recuerda. Se calla al abrir el film y al cambiar de pestaña.
    En iPhone respeta el interruptor de silencio del teléfono. */
 (function () {
@@ -36,19 +36,25 @@
   var on = false;           // lo que quiere el visitante
   var film = document.getElementById('film');
 
-  /* Botón: en pantallas anchas va fijo en la cabecera, junto a «Agendar visita»;
-     en celular y tableta, donde la cabecera no tiene espacio, flota abajo a la
-     izquierda, a la altura del botón del asistente. */
-  var css ='.musica{position:fixed;left:max(clamp(14px,2.4vw,28px),env(safe-area-inset-left,0px));bottom:calc(clamp(14px,2.4vw,28px) + var(--mus-dy,0px) + env(safe-area-inset-bottom,0px));z-index:8990;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(238,243,240,.22);background:rgba(6,18,19,.78);color:#EEF3F0;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.22);transition:bottom .35s ease,opacity .3s ease,transform .3s ease,border-color .25s}' +
-    '.musica:hover{border-color:rgba(238,243,240,.6)}' +
+  /* Botón turquesa (el color del asistente). En computadora va en la cabecera, pegado al
+     margen derecho; si ese margen es angosto, junto a «Agendar visita». En celular y
+     tableta flota abajo a la izquierda, a la altura del asistente. Al arrancar la música
+     aparece unos segundos la leyenda «Silenciar la música» junto al botón. */
+  var css = '.musica{position:fixed;left:max(clamp(14px,2.4vw,28px),env(safe-area-inset-left,0px));bottom:calc(clamp(14px,2.4vw,28px) + var(--mus-dy,0px) + env(safe-area-inset-bottom,0px));z-index:8990;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;border:1.5px solid var(--lot,#5CC9BB);background:rgba(6,18,19,.82);color:var(--lot,#5CC9BB);cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.22);transition:bottom .35s ease,opacity .3s ease,transform .3s ease,background-color .25s,color .25s}' +
+    '.musica[aria-pressed="true"]{background:var(--lot,#5CC9BB);color:#0A1E20}' +
     '.musica:focus-visible{outline:2px solid var(--pick,#E2B26E);outline-offset:3px}' +
-    '.musica svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}' +
-    '.musica[aria-pressed="true"]{color:var(--pick,#E2B26E)}' +
+    '.musica svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}' +
     '.musica.up{bottom:calc(var(--mus-up,76px) + var(--mus-dy,0px) + env(safe-area-inset-bottom,0px))}' +
     '.musica.off{opacity:0;pointer-events:none;transform:translateY(8px)}' +
-    '.top .musica.arriba{position:static;flex:none;width:40px;height:40px;margin-inline-start:-.8rem;border-radius:var(--radius,0);border-color:rgba(230,238,234,.32);background:transparent;color:inherit;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;opacity:1;transform:none}' +
-    '.top .musica.arriba:hover{border-color:rgba(230,238,234,.75)}' +
-    '.top .musica.arriba[aria-pressed="true"]{color:var(--pick,#E2B26E)}' +
+    '.top .musica.borde,.top .musica.arriba{box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(6,18,19,.35);opacity:1;transform:none}' +
+    '.top .musica.borde[aria-pressed="true"],.top .musica.arriba[aria-pressed="true"]{background:var(--lot,#5CC9BB)}' +
+    '.top .musica.borde{position:absolute;left:auto;right:auto;bottom:auto;inset-inline-end:max(20px,env(safe-area-inset-right,0px));top:calc(env(safe-area-inset-top,0px) + 15px);width:42px;height:42px}' +
+    '.top .musica.arriba{position:relative;left:auto;bottom:auto;flex:none;width:40px;height:40px;margin-inline-start:-.8rem}' +
+    '.musica .mtip{position:absolute;left:calc(100% + 10px);top:50%;z-index:1;white-space:nowrap;pointer-events:none;background:rgba(6,18,19,.94);color:#EEF3F0;font:600 .78rem/1.2 var(--f-body,system-ui,sans-serif);letter-spacing:.01em;padding:.5rem .8rem;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.28);opacity:0;transform:translate(-4px,-50%);transition:opacity .3s ease,transform .3s ease}' +
+    '.musica .mtip.show{opacity:1;transform:translate(0,-50%)}' +
+    '.top .musica.borde .mtip,.top .musica.arriba .mtip{left:auto;top:calc(100% + 10px);inset-inline-end:0;transform:translateY(-4px)}' +
+    '.top .musica.borde .mtip.show,.top .musica.arriba .mtip.show{transform:none}' +
+    '@media (hover:hover){.musica:hover{filter:brightness(1.1)}.musica:hover .mtip{opacity:1;transform:translate(0,-50%)}.top .musica.borde:hover .mtip,.top .musica.arriba:hover .mtip{transform:none}}' +
     '@media print{.musica{display:none}}';
   var st = document.createElement('style');
   st.textContent = css;
@@ -57,29 +63,34 @@
   var btn = document.createElement('button');
   btn.type = 'button';
   btn.className = 'musica';
-  btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + ICON_OFF + '"/></svg>';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + ICON_OFF + '"/></svg><span class="mtip" aria-hidden="true"></span>';
   var path = btn.querySelector('path');
+  var tip = btn.querySelector('.mtip');
 
-  // Ancho mínimo medido para que el botón quepa en la cabecera sin partir el menú (en los siete idiomas).
-  var wide = window.matchMedia ? window.matchMedia('(min-width: 1120px)') : { matches: false };
+  // Dónde va el botón según el espacio que deja la cabecera (se mide, no se adivina).
+  var topBar = document.querySelector('.top');
   var cta = document.querySelector('.top .wrap > .btn');
+  var rtl = getComputedStyle(document.documentElement).direction === 'rtl';
   function mount() {
-    var top = !!(wide.matches && cta && cta.parentNode);
-    if (top) {
-      if (btn.previousElementSibling !== cta) { cta.parentNode.insertBefore(btn, cta.nextSibling); }
-    } else if (btn.parentNode !== document.body) {
-      document.body.appendChild(btn);
+    if (btn.parentNode) { btn.parentNode.removeChild(btn); }
+    var mode = 'flota';
+    if (topBar && cta && window.innerWidth >= 1120 && getComputedStyle(cta).display !== 'none') {
+      var r = cta.getBoundingClientRect();
+      var free = rtl ? r.left : document.documentElement.clientWidth - r.right;
+      mode = free >= 84 ? 'borde' : 'arriba';
     }
-    btn.classList.toggle('arriba', top);
+    if (mode === 'borde') { topBar.appendChild(btn); }
+    else if (mode === 'arriba') { cta.parentNode.insertBefore(btn, cta.nextSibling); }
+    else { document.body.appendChild(btn); }
+    btn.classList.toggle('borde', mode === 'borde');
+    btn.classList.toggle('arriba', mode === 'arriba');
   }
   mount();
-  if (wide.addEventListener) { wide.addEventListener('change', function () { mount(); place(); }); }
-  else if (wide.addListener) { wide.addListener(function () { mount(); place(); }); }
 
   // Flotante: misma altura que el botón del asistente; sube sobre la barra móvil y se oculta con el menú.
   var mbar = document.getElementById('mbar'), menu = document.getElementById('menu');
   function place() {
-    if (btn.classList.contains('arriba')) { btn.classList.remove('up', 'off'); return; }
+    if (btn.classList.contains('borde') || btn.classList.contains('arriba')) { btn.classList.remove('up', 'off'); return; }
     var chat = document.getElementById('sbga-btn');
     if (chat) {
       var h = chat.getBoundingClientRect().height;
@@ -95,14 +106,25 @@
     if (mbar) { mo.observe(mbar, { attributes: true, attributeFilter: ['class'] }); }
     if (menu) { mo.observe(menu, { attributes: true, attributeFilter: ['hidden'] }); }
   }
-  window.addEventListener('resize', place);
-  window.addEventListener('load', place);
+  var raf = 0;
+  function relayout() { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { mount(); place(); }); }
+  window.addEventListener('resize', relayout);
+  window.addEventListener('load', relayout);
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(relayout); }
   place();
+
+  var tipTimer = null;
+  function showTip(ms) {
+    clearTimeout(tipTimer);
+    tip.classList.add('show');
+    tipTimer = setTimeout(function () { tip.classList.remove('show'); }, ms);
+  }
+  function hideTip() { clearTimeout(tipTimer); tip.classList.remove('show'); }
 
   function render() {
     btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     btn.setAttribute('aria-label', on ? txt[1] : txt[0]);
-    btn.title = on ? txt[1] : txt[0];
+    tip.textContent = on ? txt[1] : txt[0];
     path.setAttribute('d', on ? ICON_ON : ICON_OFF);
   }
   render();
@@ -203,10 +225,15 @@
     if (btn.contains(e.target)) { return; }
     if (e.type === 'keydown' && (e.key === 'Escape' || e.ctrlKey || e.metaKey || e.altKey)) { return; }
     if (!auto && !on) { disarm(); return; }
+    var first = !on;
     on = true;
     render();
     unlock();
     apply();
+    // La leyenda no se muestra si el aviso de idioma ocupa ese mismo rincón de la cabecera.
+    var aviso = document.querySelector('#sbga-lang.on');
+    var enCabecera = btn.classList.contains('borde') || btn.classList.contains('arriba');
+    if (first && !blocked() && !(aviso && enCabecera)) { showTip(6000); }
   }
   function arm() {
     if (armed) { return; }
@@ -223,6 +250,7 @@
   }
 
   btn.addEventListener('click', function () {
+    hideTip();
     on = !on;
     auto = on;
     setPref(on ? 'on' : 'off');
