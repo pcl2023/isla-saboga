@@ -113,7 +113,7 @@ section{padding-block:var(--sp-section)}
 .btn-ink:hover{background:var(--lagoon);color:#fff}
 .btn-quiet{background:transparent;border-color:var(--line);color:var(--ink)}
 .btn-quiet:hover{border-color:var(--ink)}
-.play{width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.play{position:relative;flex:none;width:22px;height:22px;border:1.25px solid currentColor;border-radius:50%}.play::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-35%,-50%);width:0;height:0;border-left:7px solid currentColor;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
 
 /* Cabecera */
 .top{position:fixed;top:0;left:0;right:0;z-index:30;padding-top:env(safe-area-inset-top,0px);color:#EEF3F0;transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
@@ -565,7 +565,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
     <p class="lead">Isla Saboga（萨博加岛）的产权登记海滨土地，位于珍珠群岛（Las Perlas），毗邻孔塔多拉岛（Contadora）。购置、许可审批、设计和施工，由单一责任方全程负责。</p>
     <div class="ctas">
       <a class="btn btn-solid" href="#parcelas">查看地图</a>
-      <button class="btn btn-line" type="button" id="openFilm"><span class="play" aria-hidden="true"></span>观看岛屿影片 · 45秒</button>
+      <button class="btn btn-line" type="button" id="openFilm"><span class="play" aria-hidden="true"></span>观看岛屿视频 · 45秒</button>
     </div>
   </div>
   <div class="cue" aria-hidden="true"><span>探索</span><i></i></div>
