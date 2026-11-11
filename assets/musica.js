@@ -2,7 +2,7 @@
    Los navegadores no dejan sonar audio hasta que el visitante toca, hace clic o pulsa
    una tecla; la música arranca en ese primer gesto, con fundido y a volumen bajo.
    El bucle se reproduce con Web Audio (sin corte en la costura) y un filtro muy lento
-   cambia el color del sonido en cada vuelta. Botón flotante abajo a la izquierda; si el visitante la
+   cambia el color del sonido en cada vuelta. Botón en la cabecera (o flotante en celular); si el visitante la
    silencia, el sitio lo recuerda. Se calla al abrir el film y al cambiar de pestaña.
    En iPhone respeta el interruptor de silencio del teléfono. */
 (function () {
@@ -36,14 +36,19 @@
   var on = false;           // lo que quiere el visitante
   var film = document.getElementById('film');
 
-  /* Botón flotante abajo a la izquierda, simétrico al del asistente */
-  var css = '.musica{position:fixed;left:max(clamp(14px,2.4vw,28px),env(safe-area-inset-left,0px));bottom:calc(clamp(14px,2.4vw,28px) + var(--mus-dy,0px) + env(safe-area-inset-bottom,0px));z-index:8990;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(238,243,240,.22);background:rgba(6,18,19,.78);color:#EEF3F0;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.22);transition:bottom .35s ease,opacity .3s ease,transform .3s ease,border-color .25s}' +
+  /* Botón: en pantallas anchas va fijo en la cabecera, junto a «Agendar visita»;
+     en celular y tableta, donde la cabecera no tiene espacio, flota abajo a la
+     izquierda, a la altura del botón del asistente. */
+  var css ='.musica{position:fixed;left:max(clamp(14px,2.4vw,28px),env(safe-area-inset-left,0px));bottom:calc(clamp(14px,2.4vw,28px) + var(--mus-dy,0px) + env(safe-area-inset-bottom,0px));z-index:8990;width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(238,243,240,.22);background:rgba(6,18,19,.78);color:#EEF3F0;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.22);transition:bottom .35s ease,opacity .3s ease,transform .3s ease,border-color .25s}' +
     '.musica:hover{border-color:rgba(238,243,240,.6)}' +
     '.musica:focus-visible{outline:2px solid var(--pick,#E2B26E);outline-offset:3px}' +
     '.musica svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}' +
     '.musica[aria-pressed="true"]{color:var(--pick,#E2B26E)}' +
     '.musica.up{bottom:calc(var(--mus-up,76px) + var(--mus-dy,0px) + env(safe-area-inset-bottom,0px))}' +
     '.musica.off{opacity:0;pointer-events:none;transform:translateY(8px)}' +
+    '.top .musica.arriba{position:static;flex:none;width:40px;height:40px;margin-inline-start:-.8rem;border-radius:var(--radius,0);border-color:rgba(230,238,234,.32);background:transparent;color:inherit;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;opacity:1;transform:none}' +
+    '.top .musica.arriba:hover{border-color:rgba(230,238,234,.75)}' +
+    '.top .musica.arriba[aria-pressed="true"]{color:var(--pick,#E2B26E)}' +
     '@media print{.musica{display:none}}';
   var st = document.createElement('style');
   st.textContent = css;
@@ -54,11 +59,27 @@
   btn.className = 'musica';
   btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + ICON_OFF + '"/></svg>';
   var path = btn.querySelector('path');
-  document.body.appendChild(btn);
 
-  // Misma altura que el botón del asistente; sube sobre la barra móvil y se oculta con el menú.
+  // Ancho mínimo medido para que el botón quepa en la cabecera sin partir el menú (en los siete idiomas).
+  var wide = window.matchMedia ? window.matchMedia('(min-width: 1120px)') : { matches: false };
+  var cta = document.querySelector('.top .wrap > .btn');
+  function mount() {
+    var top = !!(wide.matches && cta && cta.parentNode);
+    if (top) {
+      if (btn.previousElementSibling !== cta) { cta.parentNode.insertBefore(btn, cta.nextSibling); }
+    } else if (btn.parentNode !== document.body) {
+      document.body.appendChild(btn);
+    }
+    btn.classList.toggle('arriba', top);
+  }
+  mount();
+  if (wide.addEventListener) { wide.addEventListener('change', function () { mount(); place(); }); }
+  else if (wide.addListener) { wide.addListener(function () { mount(); place(); }); }
+
+  // Flotante: misma altura que el botón del asistente; sube sobre la barra móvil y se oculta con el menú.
   var mbar = document.getElementById('mbar'), menu = document.getElementById('menu');
   function place() {
+    if (btn.classList.contains('arriba')) { btn.classList.remove('up', 'off'); return; }
     var chat = document.getElementById('sbga-btn');
     if (chat) {
       var h = chat.getBoundingClientRect().height;
