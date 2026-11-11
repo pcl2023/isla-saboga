@@ -350,12 +350,12 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 .country .dot{fill:var(--ink)}
 .country .lead{fill:none;stroke:var(--ink);stroke-width:1.4}
 .region .land{fill:var(--land);stroke:var(--coast);stroke-width:1.2;stroke-linejoin:round}
-.region .rt{fill:none;stroke:var(--lagoon);stroke-width:2.2;stroke-dasharray:7 6}
-.region .rt2{fill:none;stroke:var(--ink-2);stroke-width:1.4;stroke-dasharray:2 5}
+.region .rt{fill:none;stroke:var(--lagoon);stroke-width:2.6;stroke-dasharray:9 7;stroke-linecap:round}
+.region .rt2{fill:none;stroke:var(--ink-2);stroke-width:2.2;stroke-dasharray:.1 7;stroke-linecap:round}
 .region .dot{fill:var(--ink)}
 .region .sab{fill:var(--pick);stroke:var(--ink);stroke-width:1.5}
 .region text{font-family:var(--f-mono);font-weight:500;font-size:18px;fill:var(--ink);letter-spacing:.02em}
-.region text.s{fill:var(--ink-2);font-size:16px}
+.region text.s{fill:var(--ink-2);font-size:16px}.region .origen{fill:var(--ink);stroke:var(--sea);stroke-width:4;paint-order:stroke}.region .anillo{fill:none;stroke:var(--pick);stroke-width:2.4}.region .p-mar{fill:var(--lagoon)}.region .p-aire{fill:var(--ink-2)}.region text.cap{font-size:13px;letter-spacing:.16em;text-transform:uppercase;fill:var(--ink-2)}
 .region text.big{font-family:var(--f-display);font-weight:600;font-size:26px;letter-spacing:-.01em}
 .region .halo{paint-order:stroke;stroke:var(--sea);stroke-width:6px}
 
@@ -771,7 +771,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
         <figcaption>[[[t0169]]]</figcaption>
       </figure>
       <figure class="region rise" style="margin:0">
-        <svg id="region" viewBox="60 80 840 560" role="img" aria-label="Map of the Gulf of Panama with the route from Panama City to Contadora and Saboga"></svg>
+        <svg id="region" viewBox="60 80 840 560" role="img" aria-label="Map of the Gulf of Panama with the air and sea routes from Panama City to Isla Saboga"></svg>
         <figcaption>[[[t0170]]]</figcaption>
       </figure>
       </div>
@@ -975,24 +975,39 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   GEO.playas.forEach(function(d){ el('path',{d:d,'class':'playa'},document.getElementById('gPlaya')); });
   el('path',{d:GEO.costa,'class':'costa'},document.getElementById('gCosta'));
 
-  /* Mapa regional */
+  /* Mapa regional. Un solo origen (Ciudad de Panamá) y un solo destino (Isla Saboga), con las dos
+     formas de llegar y su tiempo total de puerta a puerta. Isla Contadora queda solo como referencia. */
   var R=JSON.parse(document.getElementById('regiondata').textContent), rs=document.getElementById('region'), P=R.pts;
+  var L={pty:'[[[j0328]]]',aire:'[[[j0339]]]',mar:'[[[j0340]]]',golfo:'[[[j0322]]]',perlas:'[[[j0341]]]',cont:'[[[j0342]]]',sab:'Isla Saboga'};
   R.land.forEach(function(d){ el('path',{d:d,'class':'land'},rs); });
-  el('path',{d:'M'+P.amador.join(' ')+' Q '+(P.amador[0]+260)+' '+(P.amador[1]+150)+' '+(P.cont[0]+6)+' '+(P.cont[1]-10),'class':'rt'},rs);
-  el('path',{d:'M'+P.cont.join(' ')+' L '+P.sab.join(' '),'class':'rt'},rs);
-  el('path',{d:'M'+(P.pty[0]+6)+' '+P.pty[1]+' Q '+(P.pty[0]+300)+' '+(P.pty[1]+120)+' '+P.cont[0]+' '+(P.cont[1]-14),'class':'rt2'},rs);
   el('path',{d:R.saboga,'class':'sab'},rs);
-  function dot(p,r){ el('circle',{cx:p[0],cy:p[1],r:r||6,'class':'dot'},rs); }
-  function txt(p,s,dx,dy,cls,anchor){ var t=el('text',{x:p[0]+dx,y:p[1]+dy,'class':'halo '+(cls||''),'text-anchor':anchor||'start'},rs); t.textContent=s; }
-  dot(P.pty,7); txt(P.pty,'[[[j0328]]]',14,-10,'');
-  dot(P.cont,5); txt(P.cont,'Contadora',14,30,'');
-  txt(P.sab,'Saboga',-14,40,'big','end');
-  txt([548,316],'[[[j0309]]]',0,0,'');
-  txt(P.cont,'[[[j0314]]]',14,54,'s');
-  txt(P.taboga,'Taboga',-10,-30,'s');
-  txt([110,600],'[[[j0322]]]',0,0,'s');
-  txt([330,262],'[[[j0323]]]',0,0,'');
-  var n=el('g',{transform:'translate('+(R.W-60)+' 130)'},rs); el('path',{d:'M0 -26 L10 8 L0 1 L-10 8 Z',fill:'currentColor','class':'dot'},n); var nt=el('text',{x:0,y:32,'text-anchor':'middle'},n); nt.textContent='N';
+  function txt(p,s,dx,dy,cls,anchor){ var t=el('text',{x:p[0]+dx,y:p[1]+dy,'class':'halo '+(cls||''),'text-anchor':anchor||'start'},rs); t.textContent=s; return t; }
+  // Centro de Isla Saboga, a partir de su contorno
+  var nums=R.saboga.match(/-?\d+(\.\d+)?/g).map(Number), xs=[], ys=[], i;
+  for(i=0;i<nums.length-1;i+=2){ xs.push(nums[i]); ys.push(nums[i+1]); }
+  var S=[(Math.min.apply(0,xs)+Math.max.apply(0,xs))/2,(Math.min.apply(0,ys)+Math.max.apply(0,ys))/2], RING=27, O=P.pty;
+  el('circle',{cx:S[0],cy:S[1],r:RING,'class':'anillo'},rs);
+  // Dos rutas simétricas desde el mismo origen; cada una termina con su flecha en el anillo de Saboga
+  var dx=S[0]-O[0], dy=S[1]-O[1], len=Math.sqrt(dx*dx+dy*dy), nx=-dy/len, ny=dx/len, mid=[(O[0]+S[0])/2,(O[1]+S[1])/2];
+  function ruta(bend,cls,punta,label,anchor){
+    var c=[mid[0]+nx*bend, mid[1]+ny*bend];
+    var ex=S[0]-c[0], ey=S[1]-c[1], el2=Math.sqrt(ex*ex+ey*ey), ux=ex/el2, uy=ey/el2;
+    var end=[S[0]-ux*(RING+5), S[1]-uy*(RING+5)];
+    el('path',{d:'M'+O.join(' ')+' Q '+c.join(' ')+' '+end.join(' '),'class':cls},rs);
+    var h=15, w=7;
+    el('path',{d:'M'+(end[0]+ux*4)+' '+(end[1]+uy*4)+' L'+(end[0]-ux*h+uy*w)+' '+(end[1]-uy*h-ux*w)+' L'+(end[0]-ux*h-uy*w)+' '+(end[1]-uy*h+ux*w)+' Z','class':punta},rs);
+    var m=[0.25*O[0]+0.5*c[0]+0.25*end[0], 0.25*O[1]+0.5*c[1]+0.25*end[1]], side=bend>0?1:-1;
+    txt([m[0]+nx*24*side, m[1]+ny*24*side],label,0,6,'',anchor);
+  }
+  ruta(78,'rt','p-mar',L.mar,'end');
+  ruta(-88,'rt2','p-aire',L.aire,'start');
+  el('circle',{cx:O[0],cy:O[1],r:8,'class':'origen'},rs);
+  txt([74,O[1]],L.pty,0,-20,'');
+  txt(S,L.sab,-RING-10,RING+30,'big','end');
+  txt(P.cont,L.cont,14,6,'s');
+  txt([110,600],L.golfo,0,0,'s');
+  txt([888,622],L.perlas,0,0,'cap','end');
+  var n=el('g',{transform:'translate(866 548)'},rs); el('path',{d:'M0 -22 L9 7 L0 1 L-9 7 Z',fill:'currentColor','class':'dot'},n); var nt=el('text',{x:0,y:28,'text-anchor':'middle','class':'s'},n); nt.textContent='N';
 
 
   /* Mapa país: Caribe y Pacífico */
