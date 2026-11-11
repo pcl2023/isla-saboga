@@ -51,7 +51,6 @@ AR_CSS = ('\n<style>html[dir=rtl]{--f-display:"Noto Sans Arabic","Schibsted Grot
           'html[dir=rtl] .cp-pop{left:auto;right:0}'
           'html[dir=rtl] .submit .mono{margin-left:0;margin-right:auto}'
           'html[dir=rtl] .draft{right:auto;left:max(16px,env(safe-area-inset-left,0px))}'
-          'html[dir=rtl] .play{border-left:0;border-right:8px solid currentColor}'
           'html[dir=rtl] svg text{direction:ltr}'  # rótulos de mapas: la geografía no se invierte
           'html[dir=rtl] .tels,html[dir=rtl] .mailrow a,html[dir=rtl] .coords,html[dir=rtl] footer .mono,html[dir=rtl] .figures strong{direction:ltr;unicode-bidi:isolate;display:inline-block}'
           '@media (max-width:640px){html[dir=rtl] .steps{border-left:0;border-right:1px solid var(--line);padding-left:0;padding-right:1.2rem}html[dir=rtl] .steps li::before{left:auto;right:calc(-1.2rem - 5px)}}'
