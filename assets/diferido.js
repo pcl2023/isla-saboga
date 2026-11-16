@@ -39,13 +39,13 @@
 
   /* 3. Vista satelital y Google Earth */
   var T = {
-    es: { route:'Ruta', sat:'Satélite', group:'Tipo de mapa', earth:'Ver en 3D · Google Earth', cap:'Vista satelital · Saboga y Contadora', title:'Mapa satelital interactivo de Isla Saboga e Isla Contadora', gl:'es' },
-    en: { route:'Route', sat:'Satellite', group:'Map type', earth:'View in 3D · Google Earth', cap:'Satellite view · Saboga and Contadora', title:'Interactive satellite map of Saboga Island and Contadora Island', gl:'en' },
-    it: { route:'Percorso', sat:'Satellite', group:'Tipo di mappa', earth:'Vedi in 3D · Google Earth', cap:'Vista satellitare · Saboga e Contadora', title:'Mappa satellitare interattiva di Isla Saboga e Isla Contadora', gl:'it' },
-    fr: { route:'Itinéraire', sat:'Satellite', group:'Type de carte', earth:'Voir en 3D · Google Earth', cap:'Vue satellite · Saboga et Contadora', title:'Carte satellite interactive des îles Saboga et Contadora', gl:'fr' },
-    de: { route:'Route', sat:'Satellit', group:'Kartentyp', earth:'In 3D ansehen · Google Earth', cap:'Satellitenansicht · Saboga und Contadora', title:'Interaktive Satellitenkarte der Inseln Saboga und Contadora', gl:'de' },
+    es: { route:'Ruta', sat:'Satélite', group:'Tipo de mapa', earth:'Ver en 3D · Google Earth', cap:'Vista satelital · Isla Saboga e Isla Contadora', title:'Mapa satelital interactivo de Isla Saboga e Isla Contadora', gl:'es' },
+    en: { route:'Route', sat:'Satellite', group:'Map type', earth:'View in 3D · Google Earth', cap:'Satellite view · Isla Saboga and Isla Contadora', title:'Interactive satellite map of Isla Saboga and Isla Contadora', gl:'en' },
+    it: { route:'Percorso', sat:'Satellite', group:'Tipo di mappa', earth:'Vedi in 3D · Google Earth', cap:'Vista satellitare · Isla Saboga e Isla Contadora', title:'Mappa satellitare interattiva di Isla Saboga e Isla Contadora', gl:'it' },
+    fr: { route:'Itinéraire', sat:'Satellite', group:'Type de carte', earth:'Voir en 3D · Google Earth', cap:'Vue satellite · Isla Saboga et Isla Contadora', title:'Carte satellite interactive des îles Saboga et Contadora', gl:'fr' },
+    de: { route:'Route', sat:'Satellit', group:'Kartentyp', earth:'In 3D ansehen · Google Earth', cap:'Satellitenansicht · Isla Saboga und Isla Contadora', title:'Interaktive Satellitenkarte der Inseln Saboga und Contadora', gl:'de' },
     zh: { route:'路线', sat:'卫星', group:'地图类型', earth:'3D 查看 · Google 地球', cap:'卫星视图 · 萨博加岛与孔塔多拉岛', title:'萨博加岛与孔塔多拉岛互动卫星地图', gl:'zh-CN' },
-    ar: { route:'المسار', sat:'القمر الصناعي', group:'نوع الخريطة', earth:'عرض ثلاثي الأبعاد · Google Earth', cap:'صورة بالقمر الصناعي · سابوغا وكونتادورا', title:'خريطة تفاعلية بالقمر الصناعي لجزيرتي سابوغا وكونتادورا', gl:'ar' }
+    ar: { route:'المسار', sat:'القمر الصناعي', group:'نوع الخريطة', earth:'عرض ثلاثي الأبعاد · Google Earth', cap:'صورة بالقمر الصناعي · جزيرة سابوغا وجزيرة كونتادورا', title:'خريطة تفاعلية بالقمر الصناعي لجزيرتي سابوغا وكونتادورا', gl:'ar' }
   };
   var L = T[lang] || T.es;
   var fig = document.querySelector('#llegar figure.region');
