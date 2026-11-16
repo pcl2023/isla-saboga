@@ -26,6 +26,7 @@ Sitio estático publicado con GitHub Pages en https://pcl2023.github.io/isla-sab
 5. Color de la costa en el mapa de la sección 03: variable `--pick` (dorado de los botones), reglas `#mapa .costa` y `.lg-costa`.
 6. Música de fondo: reemplazar `assets/musica-fondo.mp3` por un archivo periódico (medio segundo de cola, el bucle y medio segundo de cabeza) y ajustar `LOOP_START` y `LOOP_END` en `assets/musica.js`. Usar solo música propia o con licencia escrita de uso comercial.
 7. Punto de vista del mapa satelital o de Google Earth: constantes `EMBED` y `EARTH` en `assets/diferido.js`.
+8. Mapas de la sección 06 (Centroamérica, Golfo de Panamá y detalle de Isla Saboga e Isla Contadora): contornos en `#insetdata` y `#regiondata` (golfo `g` y detalle `d`, costa de OpenStreetMap, licencia ODbL, con el crédito bajo los mapas). Rótulos en la variable `L` del script de cada página; en los idiomas generados, claves `j0309` a `j0352` de `i18n/strings-xx.json`. Los botones Ruta / Satélite / 3D van en la barra del pie del mapa del golfo.
 
 ## Velocidad
 Medición de referencia antes y después: PageSpeed Insights (https://pagespeed.web.dev) en modo celular y escritorio. GitHub Pages guarda los archivos en la memoria del navegador solo 10 minutos; con dominio propio detrás de Cloudflare ese plazo se puede alargar.
