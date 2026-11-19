@@ -333,11 +333,12 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 .legs .t small{display:flex;align-items:center;gap:.4rem;font-family:var(--f-mono);font-weight:500;font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-top:.45rem}.legs .t small .ic{width:1rem;height:1rem;color:var(--lagoon)}
 .legs p{font-size:var(--t-sm);color:var(--ink-2);line-height:1.4}
 .legs b{color:var(--ink);font-weight:600}
-/* Tres mapas en una fila, a un tercio del ancho cada uno (unos 350 px). Bajo 900 px, en columna. */
-.maps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"a b c";gap:clamp(.9rem,1.8vw,1.4rem);margin-top:var(--sp-block)}
+/* Dos mapas en una fila: Golfo de Panamá (con el localizador de Centroamérica en su esquina) y detalle de las islas, 45/55. Bajo 900 px, en columna. */
+.maps{display:grid;grid-template-columns:minmax(0,45fr) minmax(0,55fr);grid-template-areas:"b c";gap:clamp(.9rem,1.8vw,1.4rem);margin-top:var(--sp-block)}
 .maps .country{grid-area:a}.maps .region{grid-area:b}.maps .detail{grid-area:c}
-@media (min-width:901px){.maps,#llegar .mv-bar{max-width:930px;margin-inline:auto}}
-@media (max-width:900px){.maps{grid-template-columns:1fr;grid-template-areas:"a" "b" "c"}}
+@media (min-width:901px){.maps,#llegar .mv-bar{max-width:860px;margin-inline:auto}}
+#llegar .mv-bar{flex-direction:row-reverse}
+@media (max-width:900px){.maps{grid-template-columns:1fr;grid-template-areas:"b" "c"}}
 .maps>*{min-width:0}
 .maps figure{display:flex;flex-direction:column;background:var(--sea);border:1px solid var(--line);position:relative}
 .maps svg{width:100%;height:auto;display:block;flex:1;min-height:0}
@@ -380,6 +381,12 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 .maps .pueblo{fill:var(--ink);stroke:var(--pick);stroke-width:2}
 .maps .marco{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4}
 .maps .guia{fill:none;stroke:var(--ink-2);stroke-width:2.2}
+/* Localizador: Centroamérica con Panamá resaltado, en la esquina superior derecha del mapa del golfo */
+.maps figure.region #inset{position:absolute;top:8px;right:8px;width:30%;height:auto;flex:none;z-index:1;border:1px solid var(--coast);background:var(--sea);box-shadow:0 2px 10px rgba(6,18,19,.18)}
+#inset .l-pan{fill:var(--pick);stroke:var(--ink);stroke-width:1.4}
+#inset .pin{fill:var(--ink);stroke:var(--paper);stroke-width:5}
+#inset text{font-family:var(--f-mono);font-size:60px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;fill:var(--ink)}
+#inset .halo{stroke:var(--sea);stroke-width:12px}
 /* Detalle: Isla Saboga es la protagonista; Isla Contadora, contexto en tono bajo */
 #detalle .con{fill:var(--land);stroke:var(--coast);stroke-width:1}
 #detalle .pista{stroke:var(--ink-2);stroke-width:4.5;opacity:.75}
@@ -388,16 +395,20 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 #detalle text.lab-con{fill:var(--ink-2);opacity:.85}
 #detalle text.lab-sab{fill:var(--ink);font-weight:500}
 
-#inset text,#region text{font-size:26px}#inset text.s,#region text.s{font-size:23px}#inset text.cap,#region text.cap{font-size:20px;letter-spacing:.2em}#inset text.big,#region text.big{font-size:40px}#region text.city{font-size:28px}#region text.ruta{font-size:24px}#inset .halo,#region .halo{stroke-width:7px}#region .escala text,#region .norte text{font-size:20px}#inset .marco{stroke-width:2.2}
+#region text{font-size:26px}#region text.s{font-size:23px}#region text.cap{font-size:20px;letter-spacing:.2em}#region text.big{font-size:40px}#region text.city{font-size:28px}#region text.ruta{font-size:24px}#region .halo{stroke-width:7px}#region .escala text,#region .norte text{font-size:20px}#region .marco{stroke-width:2.6}
 #detalle text{font-size:21px}#detalle text.s{font-size:19px}#detalle text.ruta{font-size:19px}#detalle text.big{font-size:31px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:16px}
-/* Mapas pequeños (un tercio del ancho en pantallas anchas, y en celular): rótulos discretos, jerarquía cartográfica. El inset tiene un encuadre más amplio (1250 unidades) y por eso lleva cifras mayores. */
+/* Mapas pequeños (celular y pantallas anchas): rótulos discretos, jerarquía cartográfica */
 @media (max-width:600px),(min-width:901px){
-  #inset text{font-size:42px}#inset text.s{font-size:38px}#inset text.cap{font-size:33px;letter-spacing:.22em}#inset text.big{font-size:52px}#inset text.city{font-size:40px}#inset .halo{stroke-width:10px}#inset .marco{stroke-width:3.6}
-  #region text{font-size:30px}#region text.s{font-size:27px}#region text.cap{font-size:24px}#region text.big{font-size:38px}#region text.city{font-size:32px}#region text.ruta{font-size:29px}#region .escala text,#region .norte text{font-size:24px}#region .halo{stroke-width:7px}
+  #region text{font-size:25px}#region text.s{font-size:23px}#region text.cap{font-size:21px}#region text.big{font-size:32px}#region text.city{font-size:27px}#region text.ruta{font-size:25px}#region .escala text,#region .norte text{font-size:20px}#region .halo{stroke-width:6px}
+}
+@media (max-width:600px){
   #detalle text{font-size:24px}#detalle text.big{font-size:32px}#detalle text.ruta{font-size:23px}#detalle text.s,#detalle text.ruta2{font-size:21px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:19px}
 }
+@media (min-width:901px){
+  #detalle text{font-size:20px}#detalle text.big{font-size:27px}#detalle text.ruta{font-size:19px}#detalle text.s,#detalle text.ruta2{font-size:18px}#detalle .halo{stroke-width:5px}#detalle .escala text,#detalle .norte text{font-size:16px}
+}
 /* Pies de los tres mapas a la misma altura. Los botones Ruta / Satélite / 3D (los crea assets/diferido.js) van en la línea de abajo, junto al crédito. */
-#llegar .maps figcaption{min-height:3.2rem;display:flex;align-items:center}
+#llegar .maps figcaption{min-height:2.6rem;display:flex;align-items:center}
 .mapcredit{margin-top:.45rem;max-width:none;text-align:right;font-family:var(--f-mono);font-size:.56rem;letter-spacing:.06em;color:var(--ink-2)}.mapcredit a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}.mapcredit a:hover{color:var(--lagoon)}
 @media (max-width:600px){
   .maps text{font-size:30px}.maps text.s,.maps text.ruta{font-size:27px}.maps text.city{font-size:31px}
@@ -815,17 +826,14 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
         <li><span class="t">64 كم<small><svg class="ic"><use href="#i-dist"/></svg>المسافة</small></span><p><b>في خط مستقيم</b> من وسط العاصمة. نصف صباح من الباب إلى الباب.</p></li>
       </ol>
       <div class="maps">
-      <figure class="country rise" style="margin:0">
-        <svg id="inset" viewBox="-140 -110 1250 900" role="img" aria-label="خريطة أمريكا الوسطى مع إبراز بنما وموقع جزيرة سابوغا"></svg>
-        <figcaption>أمريكا الوسطى · بنما بين الكاريبي والمحيط الهادئ</figcaption>
-      </figure>
       <figure class="region rise" style="margin:0">
-        <svg id="region" viewBox="0 0 1000 720" role="img" aria-label="خريطة خليج بنما: عبّارة من مدينة بنما إلى رصيف جزيرة سابوغا وطائرة خفيفة من ألبروك إلى جزيرة كونتادورا"></svg>
-        <figcaption>خليج بنما · من العاصمة إلى جزيرة سابوغا</figcaption>
+        <svg id="region" viewBox="0 20 1000 700" role="img" aria-label="خريطة خليج بنما: عبّارة من مدينة بنما إلى رصيف جزيرة سابوغا وطائرة خفيفة من ألبروك إلى جزيرة كونتادورا"></svg>
+        <svg id="inset" viewBox="330 190 760 547" role="img" aria-label="خريطة أمريكا الوسطى مع إبراز بنما وموقع جزيرة سابوغا"></svg>
+        <figcaption>خليج بنما</figcaption>
       </figure>
       <figure class="detail rise" style="margin:0">
-        <svg id="detalle" viewBox="100 -20 800 570" role="img" aria-label="تفاصيل جزيرة سابوغا وجزيرة كونتادورا: تصل العبّارة إلى رصيف جزيرة سابوغا، ومن مهبط جزيرة كونتادورا يكون العبور بالقارب"></svg>
-        <figcaption>جزيرة سابوغا · عبّارة إلى الرصيف، أو طائرة خفيفة ثم قارب</figcaption>
+        <svg id="detalle" viewBox="30 -20 980 560" role="img" aria-label="تفاصيل جزيرة سابوغا وجزيرة كونتادورا: تصل العبّارة إلى رصيف جزيرة سابوغا، ومن مهبط جزيرة كونتادورا يكون العبور بالقارب"></svg>
+        <figcaption>جزيرة سابوغا وجزيرة كونتادورا</figcaption>
       </figure>
       </div>
       <p class="mapcredit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a></p>
@@ -1039,7 +1047,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
      Tres paneles: Centroamérica (#inset, datos de #insetdata), Golfo de Panamá (#region) y detalle (#detalle); los dos últimos salen de #regiondata (g, d).
      Cada panel lleva un recuadro con el área del siguiente. Costa del golfo y del detalle: OpenStreetMap (ODbL). */
   var RD=JSON.parse(document.getElementById('regiondata').textContent), G=RD.g, D=RD.d;
-  var L={pty:'مدينة بنما',aire:'طائرة خفيفة · 27 دقيقة',mar:'عبّارة · ساعة و30 دقيقة',lancha:'قارب · 5 إلى 10 دقائق',golfo:'خليج بنما',perlas:'أرخبيل لاس بيرلاس',pac:'المحيط الهادئ',cont:'جزيرة كونتادورا',aer:'مهبط الطائرات',muelle:'الرصيف',caribe:'البحر الكاريبي',cr:'كوستاريكا',pan:'Panama',pueblo:'قرية سابوغا',alb:'ألبروك',sab:'Isla Saboga',ama:'أمادور',tab:'جزيرة تابوغا'};
+  var L={pty:'مدينة بنما',aire:'طائرة خفيفة · 27 دقيقة',mar:'عبّارة · ساعة و30 دقيقة',lancha:'قارب · 5 إلى 10 دقائق',golfo:'خليج بنما',perlas:'أرخبيل لاس بيرلاس',pac:'المحيط الهادئ',cont:'جزيرة كونتادورا',aer:'مهبط الطائرات',muelle:'الرصيف',caribe:'البحر الكاريبي',cr:'كوستاريكا',pan:'Panama',pueblo:'قرية سابوغا',alb:'ألبروك',sab:'Isla Saboga',ferry:'عبّارة',lancha2:'قارب',ama:'أمادور',tab:'جزيرة تابوغا'};
   function carta(svg,V){
     var id=svg.id+'-t', g=el('g',{id:id},el('defs',{},svg));
     V.land.concat([V.con,V.sab]).forEach(function(d){ el('path',{d:d},g); });
@@ -1069,39 +1077,26 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
     for(var i=0;i<pasos.length-1;i++){ el('rect',{x:pasos[i]*u,y:0,width:(pasos[i+1]-pasos[i])*u,height:6,'class':i%2?'e1':'e0'},g); }
     pasos.forEach(function(p,i){ var t=el('text',{x:p*u,y:-7,'text-anchor':'middle'},g); t.textContent=p+(i===pasos.length-1?' '+txt:''); }); }
 
-  /* Centroamérica: Panamá entre el Caribe y el Pacífico, con el área del mapa del golfo */
+  /* Localizador: Centroamérica con Panamá resaltado y el punto de Isla Saboga, en la esquina del mapa del golfo */
   var I=JSON.parse(document.getElementById('insetdata').textContent), isv=document.getElementById('inset');
-  el('rect',{x:-200,y:-200,width:1400,height:1100,'class':'mar'},isv);
+  el('rect',{x:-400,y:-400,width:2400,height:1800,'class':'mar'},isv);
   I.land.forEach(function(d){ el('path',{d:d,'class':'l-land'},isv); });
   I.pan.forEach(function(d){ el('path',{d:d,'class':'l-pan'},isv); });
-  el('path',{d:'M'+I.pts.colon.join(' ')+' L '+I.pts.pty.join(' '),'class':'canal'},isv);
-  el('rect',{x:G.loc[0],y:G.loc[1],width:G.loc[2]-G.loc[0],height:G.loc[3]-G.loc[1],'class':'marco'},isv);
-  el('circle',{cx:I.pts.pty[0],cy:I.pts.pty[1],r:6,'class':'origen'},isv);
-  el('circle',{cx:I.pts.sab[0],cy:I.pts.sab[1],r:8,'class':'pin'},isv);
-  tx(isv,840,140,L.caribe,'cap','middle');
-  tx(isv,330,560,L.pac,'cap','middle');
-  tx(isv,-30,-40,'المكسيك','s');
-  tx(isv,120,92,'Guatemala','s');
-  tx(isv,330,128,'Honduras','s');
-  tx(isv,392,246,'Nicaragua','s');
-  tx(isv,440,386,L.cr,'s');
-  tx(isv,556,474,L.pan,'s','end');
-  tx(isv,1010,722,'Colombia','s','end');
-  tx(isv,I.pts.pty[0]-12,I.pts.pty[1]-28,L.pty,'city on','end');
-  // Isla Saboga: rótulo apartado, en el Pacífico, unido al punto con una guía
-  el('line',{x1:I.pts.sab[0],y1:I.pts.sab[1]+10,x2:I.pts.sab[0]-36,y2:I.pts.sab[1]+112,'class':'guia'},isv);
-  tx(isv,I.pts.sab[0]-40,I.pts.sab[1]+156,L.sab,'big','middle');
+  el('circle',{cx:I.pts.sab[0],cy:I.pts.sab[1],r:13,'class':'pin'},isv);
+  tx(isv,640,650,L.pan,'','middle');
 
   /* Golfo de Panamá: ferry hasta el muelle de Isla Saboga y avioneta hasta Isla Contadora */
   var rs=document.getElementById('region'), P=G.pts;
   el('rect',{width:G.W,height:G.H,'class':'mar'},rs);
   carta(rs,G);
+  // Área del mapa de detalle
+  el('rect',{x:G.det[0],y:G.det[1],width:G.det[2]-G.det[0],height:G.det[3]-G.det[1],'class':'marco'},rs);
   tx(rs,300,560,L.golfo,'cap','middle');
   dos(rs,976,668,L.perlas,'cap','end',24);
   var aire=ruta(rs,P.alb,P.aer,70,'r-aire',null,0,0);
   var mar=ruta(rs,P.ama,P.msa,-60,'r-mar',null,4,0);
   var a=aire(.5), m=mar(.5);
-  icono(rs,[a[0],a[1]],'i-plane',17,'b-aire'); tx(rs,a[0]+26,a[1]-14,L.aire,'ruta');
+  icono(rs,[a[0],a[1]],'i-plane',17,'b-aire'); tx(rs,a[0]-26,a[1]-16,L.aire,'ruta','end');
   icono(rs,[m[0],m[1]],'i-ferry',17,'b-mar'); tx(rs,m[0]-26,m[1]+30,L.mar,'ruta','end');
   el('circle',{cx:P.pty[0],cy:P.pty[1],r:7,'class':'origen'},rs);
   el('circle',{cx:P.alb[0],cy:P.alb[1],r:5,'class':'origen'},rs);
@@ -1110,9 +1105,9 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   tx(rs,P.alb[0]-12,P.alb[1]+8,L.alb,'s on','end');
   tx(rs,P.ama[0]+14,P.ama[1]+8,L.ama,'s');
   tx(rs,P.tab[0]+18,P.tab[1]+8,L.tab,'s');
-  tx(rs,P.sab[0]-18,P.sab[1]+44,L.sab,'big','end');
-  tx(rs,P.con[0]+26,P.con[1]+8,L.cont,'s');
-  norte(rs,950,160,1.1);
+  tx(rs,P.sab[0]-14,P.sab[1]+60,L.sab,'big','end');
+  tx(rs,P.con[0]+40,P.con[1]+8,L.cont,'s');
+  norte(rs,950,330,1.1);
   escala(rs,40,676,G.km10/10,[0,10,20],'km');
 
   /* Detalle: Isla Saboga e Isla Contadora */
@@ -1126,8 +1121,8 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   var lan=ruta(ds,[Q.ter[0]-8,Q.ter[1]-6],[Q.msa[0]+7,Q.msa[1]-3],-40,'r-lancha','p-mar',2,16);
   el('rect',{x:Q.msa[0]-5,y:Q.msa[1]-5,width:10,height:10,'class':'muelle'},ds);
   el('rect',{x:Q.ter[0]-5,y:Q.ter[1]-5,width:10,height:10,'class':'muelle'},ds);
-  var b=lan(.5); icono(ds,[b[0],b[1]],'i-boat',12,'b-mar'); tx(ds,b[0],b[1]-24,L.lancha,'ruta2','middle');
-  var f=fer(.28); icono(ds,[f[0],f[1]],'i-ferry',15,'b-mar'); tx(ds,f[0]-23,f[1]+6,L.mar,'ruta','end');
+  var b=lan(.5); icono(ds,[b[0],b[1]],'i-boat',12,'b-mar'); tx(ds,b[0],b[1]-24,L.lancha2,'ruta2','middle');
+  var f=fer(.28); icono(ds,[f[0],f[1]],'i-ferry',15,'b-mar'); tx(ds,f[0]-23,f[1]+6,L.ferry,'ruta','end');
   tx(ds,Q.msa[0]+10,Q.msa[1]+22,L.muelle,'s lab-sab');
   tx(ds,Q.ter[0]+22,Q.ter[1]-18,L.muelle,'s lab-con');
   icono(ds,[Q.aer[0]+34,Q.aer[1]+30],'i-plane',12,'b-aire');
@@ -1136,8 +1131,8 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   tx(ds,Q.pue[0]+10,Q.pue[1]+5,L.pueblo,'s on3');
   tx(ds,Q.sab[0]+52,Q.sab[1]+74,L.sab,'big on3','middle');
   tx(ds,Q.con[0]+20,Q.con[1]+150,L.cont,'s lab-con','middle');
-  norte(ds,860,40,1);
-  escala(ds,860-2*D.km1,D.H-30,D.km1,[0,1,2],'km');
+  norte(ds,980,40,1);
+  escala(ds,980-2*D.km1,D.H-30,D.km1,[0,1,2],'km');
 
 
 })();
