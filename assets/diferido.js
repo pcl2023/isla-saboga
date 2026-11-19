@@ -58,21 +58,22 @@
   var EARTH = 'https://earth.google.com/web/@8.6165,-79.0630,10a,7000d,35y,15h,58t,0r';
 
   var css = '' +
-    '#llegar figure.detail .mv-tabs{position:absolute;top:.6rem;right:.6rem;z-index:2;display:flex;padding:3px;gap:2px;background:var(--paper,#EDF1EE);border:1px solid var(--line,rgba(15,39,41,.14));border-radius:999px;box-shadow:0 1px 6px rgba(10,30,32,.12)}' +
-    '#llegar figure.detail .mv-tabs button{appearance:none;border:0;background:transparent;color:var(--ink,#0F2729);font:600 .66rem/1 var(--f-mono,sans-serif);letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:999px;cursor:pointer;min-height:32px}' +
-    '#llegar figure.detail .mv-tabs button[aria-pressed="true"]{background:var(--ink,#0F2729);color:var(--paper,#EDF1EE)}' +
-    '#llegar figure.detail .mv-tabs .mv-earth{display:inline-flex;align-items:center;gap:.3rem;color:var(--lagoon,#0D6964);font:600 .66rem/1 var(--f-mono,sans-serif);letter-spacing:.08em;text-decoration:none;padding:.5rem .75rem;border-radius:999px;min-height:32px;box-sizing:border-box;border-inline-start:1px solid var(--line,rgba(15,39,41,.14))}' +
-    '#llegar figure.detail .mv-tabs .mv-earth:hover{background:rgba(13,105,100,.1)}' +
-    '#llegar figure.detail .mv-earth svg{width:10px;height:10px;flex:none}' +
-    'html[dir=rtl] #llegar figure.detail .mv-earth svg{transform:scaleX(-1)}' +
-    '#llegar figure.detail .mv-tabs button:focus-visible,#llegar figure.detail .mv-earth:focus-visible{outline:2px solid var(--pick,#E2B26E);outline-offset:2px}' +
+    '#llegar .mv-bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:.55rem}#llegar .mv-bar .mapcredit{margin-top:0}' +
+    '#llegar .mv-tabs{display:inline-flex;padding:3px;gap:2px;background:var(--paper,#EDF1EE);border:1px solid var(--line,rgba(15,39,41,.14));border-radius:999px;box-shadow:0 1px 6px rgba(10,30,32,.12)}' +
+    '#llegar .mv-tabs button{appearance:none;border:0;background:transparent;color:var(--ink,#0F2729);font:600 .66rem/1 var(--f-mono,sans-serif);letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:999px;cursor:pointer;min-height:32px}' +
+    '#llegar .mv-tabs button[aria-pressed="true"]{background:var(--ink,#0F2729);color:var(--paper,#EDF1EE)}' +
+    '#llegar .mv-tabs .mv-earth{display:inline-flex;align-items:center;gap:.3rem;color:var(--lagoon,#0D6964);font:600 .66rem/1 var(--f-mono,sans-serif);letter-spacing:.08em;text-decoration:none;padding:.5rem .75rem;border-radius:999px;min-height:32px;box-sizing:border-box;border-inline-start:1px solid var(--line,rgba(15,39,41,.14))}' +
+    '#llegar .mv-tabs .mv-earth:hover{background:rgba(13,105,100,.1)}' +
+    '#llegar .mv-earth svg{width:10px;height:10px;flex:none}' +
+    'html[dir=rtl] #llegar .mv-earth svg{transform:scaleX(-1)}' +
+    '#llegar .mv-tabs button:focus-visible,#llegar .mv-earth:focus-visible{outline:2px solid var(--pick,#E2B26E);outline-offset:2px}' +
     '#llegar figure.detail .mv-sat{display:block;width:100%;aspect-ratio:3/2;border:0;background:#0D2A2D;flex:1 1 auto;min-height:0}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   var capText = cap;
   var routeCap = cap.textContent;
 
-  /* Botones Ruta / Satélite y enlace 3D a Google Earth (se abre en otra pestaña). Siempre arriba a la derecha, también en árabe: la geografía del mapa no se invierte. */
+  /* Botones Ruta / Satélite y enlace 3D a Google Earth (se abre en otra pestaña), en una línea bajo los mapas, junto al crédito de OpenStreetMap. */
   var tabs = document.createElement('div'); tabs.className = 'mv-tabs'; tabs.setAttribute('role', 'group'); tabs.setAttribute('aria-label', L.group);
   var bR = document.createElement('button'); bR.type = 'button'; bR.textContent = L.route; bR.setAttribute('aria-pressed', 'true');
   var bS = document.createElement('button'); bS.type = 'button'; bS.textContent = L.sat; bS.setAttribute('aria-pressed', 'false');
@@ -82,7 +83,9 @@
   earth.innerHTML = '3D<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 2 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   earth.addEventListener('click', function(){ try { if (window.goatcounter && window.goatcounter.count) { window.goatcounter.count({ path: 'google-earth-3d', title: 'Google Earth 3D abierto', event: true }); } } catch (e) {} });
   tabs.appendChild(bR); tabs.appendChild(bS); tabs.appendChild(earth);
-  fig.insertBefore(tabs, fig.firstChild);
+  var credit = document.querySelector('#llegar .mapcredit');
+  var bar = document.createElement('div'); bar.className = 'mv-bar';
+  if (credit) { credit.parentNode.insertBefore(bar, credit); bar.appendChild(tabs); bar.appendChild(credit); } else { fig.parentNode.insertBefore(bar, fig.nextSibling); bar.appendChild(tabs); }
 
   var frame = null;
   function show(sat){
