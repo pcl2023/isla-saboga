@@ -2,7 +2,7 @@
    1. Fotos de la galería, de usos y de la banda Visitar: se descargan cuando el visitante se acerca (600 px antes),
       así no compiten con la portada en celulares. En el HTML llevan data-src y data-srcset en lugar de src y srcset.
    2. Fotografía aérea del mapa de la sección 03: se descarga al acercarse al mapa; en celular usa la versión de 1200 px.
-   3. Mapa de la sección 06 (De la capital a Saboga): botones Ruta / Satélite / 3D. La vista satelital de Google Maps
+   3. Mapa de detalle de la sección 06 (Isla Saboga e Isla Contadora): botones Ruta / Satélite / 3D. La vista satelital de Google Maps
       solo se carga cuando el visitante la pide; 3D abre Google Earth en otra pestaña. */
 (function(){
   'use strict';
@@ -48,7 +48,7 @@
     ar: { route:'المسار', sat:'القمر الصناعي', group:'نوع الخريطة', earth:'عرض ثلاثي الأبعاد · Google Earth', cap:'صورة بالقمر الصناعي · جزيرة سابوغا وجزيرة كونتادورا', title:'خريطة تفاعلية بالقمر الصناعي لجزيرتي سابوغا وكونتادورا', gl:'ar' }
   };
   var L = T[lang] || T.es;
-  var fig = document.querySelector('#llegar figure.region');
+  var fig = document.querySelector('#llegar figure.detail');
   if (!fig) { return; }
   var svg = fig.querySelector('svg');
   var cap = fig.querySelector('figcaption');
@@ -58,15 +58,15 @@
   var EARTH = 'https://earth.google.com/web/@8.6165,-79.0630,10a,7000d,35y,15h,58t,0r';
 
   var css = '' +
-    '#llegar figure.region .mv-tabs{position:absolute;top:.6rem;right:.6rem;z-index:2;display:flex;padding:3px;gap:2px;background:var(--paper,#EDF1EE);border:1px solid var(--line,rgba(15,39,41,.14));border-radius:999px;box-shadow:0 1px 6px rgba(10,30,32,.12)}' +
-    '#llegar figure.region .mv-tabs button{appearance:none;border:0;background:transparent;color:var(--ink,#0F2729);font:600 .66rem/1 var(--f-mono,sans-serif);letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:999px;cursor:pointer;min-height:32px}' +
-    '#llegar figure.region .mv-tabs button[aria-pressed="true"]{background:var(--ink,#0F2729);color:var(--paper,#EDF1EE)}' +
-    '#llegar figure.region .mv-tabs .mv-earth{display:inline-flex;align-items:center;gap:.3rem;color:var(--lagoon,#0D6964);font:600 .66rem/1 var(--f-mono,sans-serif);letter-spacing:.08em;text-decoration:none;padding:.5rem .75rem;border-radius:999px;min-height:32px;box-sizing:border-box;border-inline-start:1px solid var(--line,rgba(15,39,41,.14))}' +
-    '#llegar figure.region .mv-tabs .mv-earth:hover{background:rgba(13,105,100,.1)}' +
-    '#llegar figure.region .mv-earth svg{width:10px;height:10px;flex:none}' +
-    'html[dir=rtl] #llegar figure.region .mv-earth svg{transform:scaleX(-1)}' +
-    '#llegar figure.region .mv-tabs button:focus-visible,#llegar figure.region .mv-earth:focus-visible{outline:2px solid var(--pick,#E2B26E);outline-offset:2px}' +
-    '#llegar figure.region .mv-sat{display:block;width:100%;aspect-ratio:3/2;border:0;background:#0D2A2D}';
+    '#llegar figure.detail .mv-tabs{position:absolute;top:.6rem;right:.6rem;z-index:2;display:flex;padding:3px;gap:2px;background:var(--paper,#EDF1EE);border:1px solid var(--line,rgba(15,39,41,.14));border-radius:999px;box-shadow:0 1px 6px rgba(10,30,32,.12)}' +
+    '#llegar figure.detail .mv-tabs button{appearance:none;border:0;background:transparent;color:var(--ink,#0F2729);font:600 .66rem/1 var(--f-mono,sans-serif);letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:999px;cursor:pointer;min-height:32px}' +
+    '#llegar figure.detail .mv-tabs button[aria-pressed="true"]{background:var(--ink,#0F2729);color:var(--paper,#EDF1EE)}' +
+    '#llegar figure.detail .mv-tabs .mv-earth{display:inline-flex;align-items:center;gap:.3rem;color:var(--lagoon,#0D6964);font:600 .66rem/1 var(--f-mono,sans-serif);letter-spacing:.08em;text-decoration:none;padding:.5rem .75rem;border-radius:999px;min-height:32px;box-sizing:border-box;border-inline-start:1px solid var(--line,rgba(15,39,41,.14))}' +
+    '#llegar figure.detail .mv-tabs .mv-earth:hover{background:rgba(13,105,100,.1)}' +
+    '#llegar figure.detail .mv-earth svg{width:10px;height:10px;flex:none}' +
+    'html[dir=rtl] #llegar figure.detail .mv-earth svg{transform:scaleX(-1)}' +
+    '#llegar figure.detail .mv-tabs button:focus-visible,#llegar figure.detail .mv-earth:focus-visible{outline:2px solid var(--pick,#E2B26E);outline-offset:2px}' +
+    '#llegar figure.detail .mv-sat{display:block;width:100%;aspect-ratio:3/2;border:0;background:#0D2A2D;flex:1 1 auto;min-height:0}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   var capText = cap;
