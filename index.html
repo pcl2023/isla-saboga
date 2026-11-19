@@ -331,6 +331,7 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 /* Tres mapas en una fila, a un tercio del ancho cada uno (unos 350 px). Bajo 900 px, en columna. */
 .maps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"a b c";gap:clamp(.9rem,1.8vw,1.4rem);margin-top:var(--sp-block)}
 .maps .country{grid-area:a}.maps .region{grid-area:b}.maps .detail{grid-area:c}
+@media (min-width:901px){.maps,#llegar .mv-bar{max-width:930px;margin-inline:auto}}
 @media (max-width:900px){.maps{grid-template-columns:1fr;grid-template-areas:"a" "b" "c"}}
 .maps>*{min-width:0}
 .maps figure{display:flex;flex-direction:column;background:var(--sea);border:1px solid var(--line);position:relative}
@@ -373,12 +374,14 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 .maps .pin{fill:var(--pick);stroke:var(--ink);stroke-width:2}
 .maps .pueblo{fill:var(--ink);stroke:var(--pick);stroke-width:2}
 .maps .marco{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4}
+.maps .guia{fill:none;stroke:var(--ink-2);stroke-width:2.2}
 #inset text,#region text{font-size:26px}#inset text.s,#region text.s{font-size:23px}#inset text.cap,#region text.cap{font-size:20px;letter-spacing:.2em}#inset text.big,#region text.big{font-size:40px}#region text.city{font-size:28px}#region text.ruta{font-size:24px}#inset .halo,#region .halo{stroke-width:7px}#region .escala text,#region .norte text{font-size:20px}#inset .marco{stroke-width:2.2}
 #detalle text{font-size:21px}#detalle text.s{font-size:19px}#detalle text.ruta{font-size:19px}#detalle text.big{font-size:31px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:16px}
-/* En pantallas anchas cada mapa mide un tercio: rótulos grandes, como en celular */
-@media (min-width:901px){
-  #detalle text{font-size:29px}#detalle text.big{font-size:40px}#detalle text.ruta{font-size:26px}#detalle text.s{font-size:24px}#detalle .halo{stroke-width:7px}#detalle .escala text,#detalle .norte text{font-size:21px}
-  #inset text,#region text{font-size:38px}#inset text.s,#region text.s{font-size:33px}#inset text.cap,#region text.cap{font-size:28px}#inset text.big,#region text.big{font-size:52px}#inset text.city,#region text.city{font-size:42px}#region text.ruta{font-size:36px}#region .escala text,#region .norte text{font-size:28px}#inset .halo,#region .halo{stroke-width:10px}#inset .marco{stroke-width:3}
+/* Mapas pequeños (un tercio del ancho en pantallas anchas, y en celular): rótulos discretos, jerarquía cartográfica. El inset tiene un encuadre más amplio (1250 unidades) y por eso lleva cifras mayores. */
+@media (max-width:600px),(min-width:901px){
+  #inset text{font-size:42px}#inset text.s{font-size:38px}#inset text.cap{font-size:33px;letter-spacing:.22em}#inset text.big{font-size:52px}#inset text.city{font-size:40px}#inset .halo{stroke-width:10px}#inset .marco{stroke-width:3.6}
+  #region text{font-size:30px}#region text.s{font-size:27px}#region text.cap{font-size:24px}#region text.big{font-size:38px}#region text.city{font-size:32px}#region text.ruta{font-size:29px}#region .escala text,#region .norte text{font-size:24px}#region .halo{stroke-width:7px}
+  #detalle text{font-size:24px}#detalle text.big{font-size:30px}#detalle text.ruta{font-size:23px}#detalle text.s{font-size:21px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:19px}
 }
 /* Pies de los tres mapas a la misma altura. Los botones Ruta / Satélite / 3D (los crea assets/diferido.js) van en la línea de abajo, junto al crédito. */
 #llegar .maps figcaption{min-height:3.2rem;display:flex;align-items:center}
@@ -387,8 +390,6 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
   .maps text{font-size:30px}.maps text.s,.maps text.ruta{font-size:27px}.maps text.city{font-size:31px}
   .maps text.big{font-size:40px}.maps text.cap{font-size:22px;letter-spacing:.16em}
   .maps .halo{stroke-width:8px}.maps .escala text,.maps .norte text{font-size:22px}
-  #detalle text{font-size:29px}#detalle text.big{font-size:40px}#detalle text.ruta{font-size:26px}#detalle text.s{font-size:24px}#detalle .halo{stroke-width:7px}#detalle .escala text,#detalle .norte text{font-size:21px}
-  #inset text,#region text{font-size:38px}#inset text.s,#region text.s{font-size:33px}#inset text.cap,#region text.cap{font-size:28px}#inset text.big,#region text.big{font-size:52px}#region text.city{font-size:42px}#region text.ruta{font-size:36px}#region .escala text,#region .norte text{font-size:28px}#inset .halo,#region .halo{stroke-width:10px}
 }
 
 /* Visitar */
@@ -802,7 +803,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
       </ol>
       <div class="maps">
       <figure class="country rise" style="margin:0">
-        <svg id="inset" viewBox="40 12 900 648" role="img" aria-label="Mapa de Centroamérica con Panamá resaltado y la posición de Isla Saboga"></svg>
+        <svg id="inset" viewBox="-140 -110 1250 900" role="img" aria-label="Mapa de Centroamérica con Panamá resaltado y la posición de Isla Saboga"></svg>
         <figcaption>Centroamérica · Panamá entre el Caribe y el Pacífico</figcaption>
       </figure>
       <figure class="region rise" style="margin:0">
@@ -1062,18 +1063,21 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   I.pan.forEach(function(d){ el('path',{d:d,'class':'l-pan'},isv); });
   el('path',{d:'M'+I.pts.colon.join(' ')+' L '+I.pts.pty.join(' '),'class':'canal'},isv);
   el('rect',{x:G.loc[0],y:G.loc[1],width:G.loc[2]-G.loc[0],height:G.loc[3]-G.loc[1],'class':'marco'},isv);
-  el('circle',{cx:I.pts.pty[0],cy:I.pts.pty[1],r:4.5,'class':'origen'},isv);
-  el('circle',{cx:I.pts.sab[0],cy:I.pts.sab[1],r:6,'class':'pin'},isv);
-  tx(isv,700,236,L.caribe,'cap','middle');
+  el('circle',{cx:I.pts.pty[0],cy:I.pts.pty[1],r:6,'class':'origen'},isv);
+  el('circle',{cx:I.pts.sab[0],cy:I.pts.sab[1],r:8,'class':'pin'},isv);
+  tx(isv,840,140,L.caribe,'cap','middle');
   tx(isv,330,560,L.pac,'cap','middle');
+  tx(isv,-30,-40,'México','s');
   tx(isv,120,92,'Guatemala','s');
   tx(isv,330,128,'Honduras','s');
   tx(isv,392,246,'Nicaragua','s');
   tx(isv,440,386,L.cr,'s');
   tx(isv,556,474,L.pan,'s','end');
-  tx(isv,915,606,'Colombia','s','end');
-  tx(isv,I.pts.pty[0]-10,I.pts.pty[1]-14,L.pty,'city on','end');
-  tx(isv,I.pts.sab[0],G.loc[3]+36,L.sab,'big','middle');
+  tx(isv,1010,722,'Colombia','s','end');
+  tx(isv,I.pts.pty[0]-12,I.pts.pty[1]-28,L.pty,'city on','end');
+  // Isla Saboga: rótulo apartado, en el Pacífico, unido al punto con una guía
+  el('line',{x1:I.pts.sab[0],y1:I.pts.sab[1]+10,x2:I.pts.sab[0]-36,y2:I.pts.sab[1]+112,'class':'guia'},isv);
+  tx(isv,I.pts.sab[0]-40,I.pts.sab[1]+156,L.sab,'big','middle');
 
   /* Golfo de Panamá: ferry hasta el muelle de Isla Saboga y avioneta hasta Isla Contadora */
   var rs=document.getElementById('region'), P=G.pts;
@@ -1117,7 +1121,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   tx(ds,Q.aer[0]+55,Q.aer[1]+36,L.aer,'s on2');
   el('circle',{cx:Q.pue[0],cy:Q.pue[1],r:4,'class':'pueblo'},ds);
   tx(ds,Q.pue[0]+10,Q.pue[1]+5,L.pueblo,'s on3');
-  tx(ds,Q.sab[0]+70,Q.sab[1]+150,L.sab,'big');
+  tx(ds,Q.sab[0]+88,Q.sab[1]+198,L.sab,'big');
   tx(ds,Q.con[0]+20,Q.con[1]+150,L.cont,'','middle');
   norte(ds,860,40,1);
   escala(ds,860-2*D.km1,D.H-30,D.km1,[0,1,2],'km');
