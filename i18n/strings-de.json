@@ -168,7 +168,7 @@
  "t0167": "Entfernung</small></span>",
  "t0168": "<b>Luftlinie</b> vom Zentrum der Hauptstadt. Ein halber Vormittag von Tür zu Tür.",
  "t0169": "Mittelamerika · Panama zwischen Karibik und Pazifik",
- "t0170": "Golf von Panama · Von der Hauptstadt nach Isla Saboga",
+ "t0170": "Golf von Panama",
  "a0171": "Saboga besuchen",
  "t0172": "Saboga besuchen</span>",
  "t0173": "Sehen Sie die Insel, bevor Sie entscheiden",
@@ -344,12 +344,14 @@
  "a0343": "Karte Mittelamerikas mit hervorgehobenem Panama und der Lage von Isla Saboga",
  "a0344": "Karte des Golfs von Panama: Fähre von Panama-Stadt zum Anleger von Isla Saboga und Kleinflugzeug von Albrook nach Isla Contadora",
  "a0345": "Detailkarte von Isla Saboga und Isla Contadora: Die Fähre legt am Anleger von Isla Saboga an; von der Landebahn auf Isla Contadora geht es per Boot hinüber",
- "t0346": "Isla Saboga · Fähre zum Anleger oder Kleinflugzeug und Boot",
+ "t0346": "Isla Saboga und Isla Contadora",
  "j0347": "Landebahn",
  "j0348": "Anleger",
  "j0349": "Dorf Saboga",
  "j0350": "Amador",
  "j0351": "Isla Taboga",
  "j0352": "Albrook",
- "j0353": "Mexiko"
+ "j0353": "Mexiko",
+ "j0354": "Fähre",
+ "j0355": "Boot"
 }

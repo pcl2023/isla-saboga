@@ -168,7 +168,7 @@
  "t0167": "Distance</small></span>",
  "t0168": "<b>In a straight line</b> from the center of the capital. Half a morning door to door.",
  "t0169": "Central America · Panama between the Caribbean and the Pacific",
- "t0170": "Gulf of Panama · From the capital to Isla Saboga",
+ "t0170": "Gulf of Panama",
  "a0171": "Visit Saboga",
  "t0172": "Visitar Saboga</span>",
  "t0173": "See the island before you decide",
@@ -344,12 +344,14 @@
  "a0343": "Map of Central America with Panama highlighted and the position of Isla Saboga",
  "a0344": "Map of the Gulf of Panama: ferry from Panama City to the pier on Isla Saboga and light aircraft from Albrook to Isla Contadora",
  "a0345": "Detail of Isla Saboga and Isla Contadora: the ferry arrives at the pier on Isla Saboga; from the Isla Contadora airstrip the crossing is by boat",
- "t0346": "Isla Saboga · Ferry to the pier, or light aircraft and boat",
+ "t0346": "Isla Saboga and Isla Contadora",
  "j0347": "Airstrip",
  "j0348": "Pier",
  "j0349": "Saboga village",
  "j0350": "Amador",
  "j0351": "Isla Taboga",
  "j0352": "Albrook",
- "j0353": "Mexico"
+ "j0353": "Mexico",
+ "j0354": "Ferry",
+ "j0355": "Boat"
 }

@@ -168,7 +168,7 @@
  "t0167": "Distance</small></span>",
  "t0168": "<b>À vol d’oiseau</b> depuis le centre de la capitale. Une demi-matinée porte à porte.",
  "t0169": "Amérique centrale · Le Panama entre les Caraïbes et le Pacifique",
- "t0170": "Golfe de Panama · De la capitale à Isla Saboga",
+ "t0170": "Golfe de Panama",
  "a0171": "Visiter Saboga",
  "t0172": "Visiter Saboga</span>",
  "t0173": "Voir l’île avant de décider",
@@ -344,12 +344,14 @@
  "a0343": "Carte de l’Amérique centrale avec le Panama mis en évidence et la position d’Isla Saboga",
  "a0344": "Carte du golfe de Panama : ferry de Panama City jusqu’au quai d’Isla Saboga et avion léger d’Albrook à Isla Contadora",
  "a0345": "Détail d’Isla Saboga et d’Isla Contadora : le ferry arrive au quai d’Isla Saboga ; depuis la piste d’Isla Contadora, la traversée se fait en bateau",
- "t0346": "Isla Saboga · Ferry jusqu’au quai, ou avion léger et bateau",
+ "t0346": "Isla Saboga et Isla Contadora",
  "j0347": "Piste d’atterrissage",
  "j0348": "Quai",
  "j0349": "Village de Saboga",
  "j0350": "Amador",
  "j0351": "Isla Taboga",
  "j0352": "Albrook",
- "j0353": "Mexique"
+ "j0353": "Mexique",
+ "j0354": "Ferry",
+ "j0355": "Bateau"
 }

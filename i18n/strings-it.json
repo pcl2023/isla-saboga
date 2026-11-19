@@ -168,7 +168,7 @@
  "t0167": "Distanza</small></span>",
  "t0168": "<b>In linea d’aria</b> dal centro della capitale. Mezza mattinata porta a porta.",
  "t0169": "America Centrale · Panama tra il Mar dei Caraibi e il Pacifico",
- "t0170": "Golfo di Panama · Dalla capitale a Isla Saboga",
+ "t0170": "Golfo di Panama",
  "a0171": "Visitare Saboga",
  "t0172": "Visitare Saboga</span>",
  "t0173": "Veda l’isola prima di decidere",
@@ -344,12 +344,14 @@
  "a0343": "Mappa dell’America Centrale con Panama in evidenza e la posizione di Isla Saboga",
  "a0344": "Mappa del Golfo di Panama: traghetto da Città di Panama al molo di Isla Saboga e aereo leggero da Albrook a Isla Contadora",
  "a0345": "Dettaglio di Isla Saboga e Isla Contadora: il traghetto arriva al molo di Isla Saboga; dalla pista di Isla Contadora si attraversa in barca",
- "t0346": "Isla Saboga · Traghetto al molo, oppure aereo leggero e barca",
+ "t0346": "Isla Saboga e Isla Contadora",
  "j0347": "Pista di atterraggio",
  "j0348": "Molo",
  "j0349": "Paese di Saboga",
  "j0350": "Amador",
  "j0351": "Isla Taboga",
  "j0352": "Albrook",
- "j0353": "Messico"
+ "j0353": "Messico",
+ "j0354": "Traghetto",
+ "j0355": "Barca"
 }
