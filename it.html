@@ -375,13 +375,21 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 .maps .pueblo{fill:var(--ink);stroke:var(--pick);stroke-width:2}
 .maps .marco{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4}
 .maps .guia{fill:none;stroke:var(--ink-2);stroke-width:2.2}
+/* Detalle: Isla Saboga es la protagonista; Isla Contadora, contexto en tono bajo */
+#detalle .con{fill:var(--land);stroke:var(--coast);stroke-width:1}
+#detalle .pista{stroke:var(--ink-2);stroke-width:4.5;opacity:.75}
+#detalle .r-lancha{stroke-width:2.2;opacity:.8}
+#detalle text.ruta2{font-size:19px;font-weight:500;fill:var(--ink-2)}
+#detalle text.lab-con{fill:var(--ink-2);opacity:.85}
+#detalle text.lab-sab{fill:var(--ink);font-weight:500}
+
 #inset text,#region text{font-size:26px}#inset text.s,#region text.s{font-size:23px}#inset text.cap,#region text.cap{font-size:20px;letter-spacing:.2em}#inset text.big,#region text.big{font-size:40px}#region text.city{font-size:28px}#region text.ruta{font-size:24px}#inset .halo,#region .halo{stroke-width:7px}#region .escala text,#region .norte text{font-size:20px}#inset .marco{stroke-width:2.2}
 #detalle text{font-size:21px}#detalle text.s{font-size:19px}#detalle text.ruta{font-size:19px}#detalle text.big{font-size:31px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:16px}
 /* Mapas pequeños (un tercio del ancho en pantallas anchas, y en celular): rótulos discretos, jerarquía cartográfica. El inset tiene un encuadre más amplio (1250 unidades) y por eso lleva cifras mayores. */
 @media (max-width:600px),(min-width:901px){
   #inset text{font-size:42px}#inset text.s{font-size:38px}#inset text.cap{font-size:33px;letter-spacing:.22em}#inset text.big{font-size:52px}#inset text.city{font-size:40px}#inset .halo{stroke-width:10px}#inset .marco{stroke-width:3.6}
   #region text{font-size:30px}#region text.s{font-size:27px}#region text.cap{font-size:24px}#region text.big{font-size:38px}#region text.city{font-size:32px}#region text.ruta{font-size:29px}#region .escala text,#region .norte text{font-size:24px}#region .halo{stroke-width:7px}
-  #detalle text{font-size:24px}#detalle text.big{font-size:30px}#detalle text.ruta{font-size:23px}#detalle text.s{font-size:21px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:19px}
+  #detalle text{font-size:24px}#detalle text.big{font-size:32px}#detalle text.ruta{font-size:23px}#detalle text.s,#detalle text.ruta2{font-size:21px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:19px}
 }
 /* Pies de los tres mapas a la misma altura. Los botones Ruta / Satélite / 3D (los crea assets/diferido.js) van en la línea de abajo, junto al crédito. */
 #llegar .maps figcaption{min-height:3.2rem;display:flex;align-items:center}
@@ -1113,16 +1121,16 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   var lan=ruta(ds,[Q.ter[0]-8,Q.ter[1]-6],[Q.msa[0]+7,Q.msa[1]-3],-40,'r-lancha','p-mar',2,16);
   el('rect',{x:Q.msa[0]-5,y:Q.msa[1]-5,width:10,height:10,'class':'muelle'},ds);
   el('rect',{x:Q.ter[0]-5,y:Q.ter[1]-5,width:10,height:10,'class':'muelle'},ds);
-  var b=lan(.5); icono(ds,[b[0],b[1]],'i-boat',15,'b-mar'); tx(ds,b[0],b[1]-28,L.lancha,'ruta','middle');
+  var b=lan(.5); icono(ds,[b[0],b[1]],'i-boat',12,'b-mar'); tx(ds,b[0],b[1]-24,L.lancha,'ruta2','middle');
   var f=fer(.28); icono(ds,[f[0],f[1]],'i-ferry',15,'b-mar'); tx(ds,f[0]-23,f[1]+6,L.mar,'ruta','end');
-  tx(ds,Q.msa[0]+10,Q.msa[1]+22,L.muelle,'s');
-  tx(ds,Q.ter[0]+22,Q.ter[1]-18,L.muelle,'s');
-  icono(ds,[Q.aer[0]+34,Q.aer[1]+30],'i-plane',15,'b-aire');
-  tx(ds,Q.aer[0]+55,Q.aer[1]+36,L.aer,'s on2');
+  tx(ds,Q.msa[0]+10,Q.msa[1]+22,L.muelle,'s lab-sab');
+  tx(ds,Q.ter[0]+22,Q.ter[1]-18,L.muelle,'s lab-con');
+  icono(ds,[Q.aer[0]+34,Q.aer[1]+30],'i-plane',12,'b-aire');
+  tx(ds,Q.aer[0]+52,Q.aer[1]+36,L.aer,'s on lab-con');
   el('circle',{cx:Q.pue[0],cy:Q.pue[1],r:4,'class':'pueblo'},ds);
   tx(ds,Q.pue[0]+10,Q.pue[1]+5,L.pueblo,'s on3');
-  tx(ds,Q.sab[0]+88,Q.sab[1]+198,L.sab,'big');
-  tx(ds,Q.con[0]+20,Q.con[1]+150,L.cont,'','middle');
+  tx(ds,Q.sab[0]+52,Q.sab[1]+74,L.sab,'big on3','middle');
+  tx(ds,Q.con[0]+20,Q.con[1]+150,L.cont,'s lab-con','middle');
   norte(ds,860,40,1);
   escala(ds,860-2*D.km1,D.H-30,D.km1,[0,1,2],'km');
 
