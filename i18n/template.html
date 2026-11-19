@@ -328,8 +328,8 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 .legs .t small{display:flex;align-items:center;gap:.4rem;font-family:var(--f-mono);font-weight:500;font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-top:.45rem}.legs .t small .ic{width:1rem;height:1rem;color:var(--lagoon)}
 .legs p{font-size:var(--t-sm);color:var(--ink-2);line-height:1.4}
 .legs b{color:var(--ink);font-weight:600}
-/* Una sola banda: Centroamérica y Golfo apilados a la izquierda, detalle de las islas a la derecha. Bajo 900 px, en columna. */
-.maps{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);grid-template-areas:"a c" "b c";gap:clamp(.9rem,1.8vw,1.4rem);margin-top:var(--sp-block)}
+/* Tres mapas en una fila, a un tercio del ancho cada uno (unos 350 px). Bajo 900 px, en columna. */
+.maps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"a b c";gap:clamp(.9rem,1.8vw,1.4rem);margin-top:var(--sp-block)}
 .maps .country{grid-area:a}.maps .region{grid-area:b}.maps .detail{grid-area:c}
 @media (max-width:900px){.maps{grid-template-columns:1fr;grid-template-areas:"a" "b" "c"}}
 .maps>*{min-width:0}
@@ -374,22 +374,20 @@ dialog.lb .x{position:absolute;top:-2.6rem;right:0}
 .maps .pueblo{fill:var(--ink);stroke:var(--pick);stroke-width:2}
 .maps .marco{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4}
 #inset text,#region text{font-size:26px}#inset text.s,#region text.s{font-size:23px}#inset text.cap,#region text.cap{font-size:20px;letter-spacing:.2em}#inset text.big,#region text.big{font-size:40px}#region text.city{font-size:28px}#region text.ruta{font-size:24px}#inset .halo,#region .halo{stroke-width:7px}#region .escala text,#region .norte text{font-size:20px}#inset .marco{stroke-width:2.2}
-/* En pantallas anchas los mapas de contexto miden un tercio: rótulos grandes, como en celular; el detalle, un poco más que el tamaño base */
+#detalle text{font-size:21px}#detalle text.s{font-size:19px}#detalle text.ruta{font-size:19px}#detalle text.big{font-size:31px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:16px}
+/* En pantallas anchas cada mapa mide un tercio: rótulos grandes, como en celular */
 @media (min-width:901px){
+  #detalle text{font-size:29px}#detalle text.big{font-size:40px}#detalle text.ruta{font-size:26px}#detalle text.s{font-size:24px}#detalle .halo{stroke-width:7px}#detalle .escala text,#detalle .norte text{font-size:21px}
   #inset text,#region text{font-size:38px}#inset text.s,#region text.s{font-size:33px}#inset text.cap,#region text.cap{font-size:28px}#inset text.big,#region text.big{font-size:52px}#inset text.city,#region text.city{font-size:42px}#region text.ruta{font-size:36px}#region .escala text,#region .norte text{font-size:28px}#inset .halo,#region .halo{stroke-width:10px}#inset .marco{stroke-width:3}
 }
-#detalle text{font-size:21px}#detalle text.s{font-size:19px}#detalle text.ruta{font-size:19px}#detalle text.big{font-size:31px}#detalle .halo{stroke-width:6px}#detalle .escala text,#detalle .norte text{font-size:16px}
-/* Botones Ruta / Satélite / 3D (los crea assets/diferido.js): en la barra del pie del mapa de detalle, que es el área de la vista satelital */
+/* Pies de los tres mapas a la misma altura. Los botones Ruta / Satélite / 3D (los crea assets/diferido.js) van en la línea de abajo, junto al crédito. */
 #llegar .maps figcaption{min-height:3.2rem;display:flex;align-items:center}
-#llegar .maps figure.detail figcaption{padding-right:min(17rem,52%)}
-#llegar .maps figure.detail .mv-tabs{top:auto;bottom:.4rem;right:.5rem}
-@media (max-width:600px){#llegar .maps figure.detail figcaption{padding-right:.9rem;padding-bottom:3.4rem;align-items:flex-start}}
 .mapcredit{margin-top:.45rem;max-width:none;text-align:right;font-family:var(--f-mono);font-size:.56rem;letter-spacing:.06em;color:var(--ink-2)}.mapcredit a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}.mapcredit a:hover{color:var(--lagoon)}
 @media (max-width:600px){
   .maps text{font-size:30px}.maps text.s,.maps text.ruta{font-size:27px}.maps text.city{font-size:31px}
   .maps text.big{font-size:40px}.maps text.cap{font-size:22px;letter-spacing:.16em}
   .maps .halo{stroke-width:8px}.maps .escala text,.maps .norte text{font-size:22px}
-  #detalle text{font-size:36px}#detalle text.big{font-size:50px}#detalle text.ruta{font-size:32px}#detalle text.s{font-size:30px}#detalle .halo{stroke-width:9px}#detalle .escala text,#detalle .norte text{font-size:26px}
+  #detalle text{font-size:29px}#detalle text.big{font-size:40px}#detalle text.ruta{font-size:26px}#detalle text.s{font-size:24px}#detalle .halo{stroke-width:7px}#detalle .escala text,#detalle .norte text{font-size:21px}
   #inset text,#region text{font-size:38px}#inset text.s,#region text.s{font-size:33px}#inset text.cap,#region text.cap{font-size:28px}#inset text.big,#region text.big{font-size:52px}#region text.city{font-size:42px}#region text.ruta{font-size:36px}#region .escala text,#region .norte text{font-size:28px}#inset .halo,#region .halo{stroke-width:10px}
 }
 
@@ -809,7 +807,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
         <figcaption>[[[t0170]]]</figcaption>
       </figure>
       <figure class="detail rise" style="margin:0">
-        <svg id="detalle" viewBox="0 0 1000 540" role="img" aria-label="[[[a0345]]]"></svg>
+        <svg id="detalle" viewBox="100 -20 800 570" role="img" aria-label="[[[a0345]]]"></svg>
         <figcaption>[[[t0346]]]</figcaption>
       </figure>
       </div>
@@ -1098,7 +1096,7 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
 
   /* Detalle: Isla Saboga e Isla Contadora */
   var ds=document.getElementById('detalle'), Q=D.pts;
-  el('rect',{width:D.W,height:D.H,'class':'mar'},ds);
+  el('rect',{x:-300,y:-300,width:1600,height:1200,'class':'mar'},ds);
   carta(ds,D);
   el('line',{x1:D.run[0][0],y1:D.run[0][1],x2:D.run[1][0],y2:D.run[1][1],'class':'pista'},ds);
   el('line',{x1:D.run[0][0],y1:D.run[0][1],x2:D.run[1][0],y2:D.run[1][1],'class':'pista-eje'},ds);
@@ -1117,8 +1115,8 @@ dialog.film .x{position:absolute;top:8px;right:8px;z-index:1;width:34px;height:3
   tx(ds,Q.pue[0]+10,Q.pue[1]+5,L.pueblo,'s on3');
   tx(ds,Q.sab[0]+70,Q.sab[1]+150,L.sab,'big');
   tx(ds,Q.con[0]+20,Q.con[1]+150,L.cont,'','middle');
-  norte(ds,958,56,1);
-  escala(ds,D.W-40-2*D.km1,D.H-30,D.km1,[0,1,2],'km');
+  norte(ds,860,40,1);
+  escala(ds,860-2*D.km1,D.H-30,D.km1,[0,1,2],'km');
 
 
 })();
